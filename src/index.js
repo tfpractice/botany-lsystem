@@ -1,2 +1,2 @@
-import * as DOL from '.dol';
+import * as DOL from './dol';
 export { DOL, };
