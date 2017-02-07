@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, fromString, nextString, setComm, setSucc,
+import { addTermBin, addTerms, command,commandString, fromString, nextString, setComm, setSucc,
   split,successor,system,trimWhite, } from 'src/system';
  
 const myString = 'F-f++ff-';
@@ -67,6 +67,10 @@ describe('system', () => {
     it('returns a new system with entries from the split string', () => {
       expect(nextString(fromString(myString))(myString)).toBeString();
       expect(nextString(fromString(myString))('FFF').length).toBe(3);
+    });
+  }); describe('commandString', () => {
+    it('returns a new system with entries from the split string', () => {
+      expect(commandString(fromString(myString))(myString)).toBeArray();
     });
   });
 });

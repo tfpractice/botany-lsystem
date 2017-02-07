@@ -19,3 +19,4 @@ export const trimWhite = str => str.replace(/\s/g,'');
 export const split = (str = '') => trimWhite(str).split('');
 export const fromString = str => addTerms(system())(...split(str));
 export const nextString = sys => str => split(str).map(successor(sys)).join('');
+export const commandString = sys => str => split(str).map(command(sys));
