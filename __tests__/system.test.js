@@ -65,13 +65,8 @@ describe('system', () => {
   });
   describe('nextString', () => {
     it('returns a new system with entries from the split string', () => {
-      console.log('nextString(koch)()', nextString(koch)('FFF'));
-      console.log('koch', koch);
-      console.log('trim', 'F − F + F + FF − F − F + F'.trim());
       expect(nextString(fromString(myString))(myString)).toBeString();
       expect(nextString(fromString(myString))('FFF').length).toBe(3);
-
-      // expect(nextString(koch)('FFF').length).toBe(3);
     });
   });
 });
