@@ -41,7 +41,7 @@ describe('system', () => {
   });
   describe('addTerms', () => {
     it('adds multiple terms to a system', () => {
-      expect((addTerms(system())('a','b','c','d')).size()).toBe(4);
+      expect(addTerms(system())('a','b','c','d').size).toBe(4);
     });
   });
   describe('forward', () => {
