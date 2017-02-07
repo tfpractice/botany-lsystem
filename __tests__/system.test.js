@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { addTermBin, command, setComm, setSucc, successor,system, } from 'src/system';
+import { addTermBin, addTerms, command, setComm, setSucc, successor, system, } from 'src/system';
 
 describe('system', () => {
   describe('system', () => {
@@ -10,7 +10,8 @@ describe('system', () => {
   describe('successor', () => {
     it('retrieves the successor string of a system key', () => {
       expect(successor(system())('a')).toEqual('a');
-    }); it('defaults to the identity function', () => {
+    });
+    it('defaults to the identity function', () => {
       expect(command(system())('a')(12)).toEqual(12);
     });
   });
@@ -34,13 +35,13 @@ describe('system', () => {
   });
   describe('addTermBin', () => {
     it('adds a term to a system', () => {
-      expect(successor(addTermBin(system(),'a'))('a')).toBe('a');
-      expect(command(addTermBin(system(),'a'))('a')(12)).toBe(12);
+      expect(successor(addTermBin(system(), 'a'))('a')).toBe('a');
+      expect(command(addTermBin(system(), 'a'))('a')(12)).toBe(12);
     });
   });
-  describe('transY', () => {
-    it('translates the y-value of a turtle state', () => {
-      // expect(transY(3)(state(1,2, Math.PI / 2))).toEqual(5);
+  describe('addTerms', () => {
+    it('adds multiple terms to a system', () => {
+      expect((addTerms(system())('a','b','c','d')).size()).toBe(4);
     });
   });
   describe('forward', () => {

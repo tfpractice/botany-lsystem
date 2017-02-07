@@ -1,6 +1,6 @@
 import { addMap, asMap,asSet,get, } from 'fenugreek-collections';
+
 export const identity = x => x;
-  
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;
 export const command = sys => term => get(get(sys)(term))('command') || identity;
@@ -13,6 +13,6 @@ export const setComm = sys => term => comm =>
 export const addTermBin = (sys,term) =>
 setComm(setSucc(sys)(term)(successor(sys)(term)))(term)(command(sys)(term));
 
-// export const addTerms = sys => (...terms) => terms.reduce(addTermBin, sys);
+export const addTerms = sys => (...terms) => terms.reduce(addTermBin, sys);
   
 // export const successor = sys => pred => get(sys)(pred);
