@@ -1,5 +1,7 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, setComm, setSucc, successor, system, } from 'src/system';
+import { addTermBin, addTerms, command, fromString, setComm, setSucc, successor,system, } from 'src/system';
+ 
+const myString = 'F-f++ff-';
 
 describe('system', () => {
   describe('system', () => {
@@ -44,9 +46,9 @@ describe('system', () => {
       expect(addTerms(system())('a','b','c','d').size).toBe(4);
     });
   });
-  describe('forward', () => {
-    it('returns a new state with x and y changed', () => {
-      // expect(getDir(forward(3)(state(1,2, Math.PI / 2)))).toEqual(Math.PI / 2);
+  describe('fromString', () => {
+    it('returns a new system with entries from the split string', () => {
+      expect(fromString(addTerms(system())('a','b','c','d'))(myString).size).toBe(4);
     });
   });
 });
