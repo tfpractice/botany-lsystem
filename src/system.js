@@ -14,5 +14,8 @@ export const addTermBin = (sys,term) =>
 setComm(setSucc(sys)(term)(successor(sys)(term)))(term)(command(sys)(term));
 
 export const addTerms = sys => (...terms) => terms.reduce(addTermBin, sys);
-  
-export const fromString = sys => str => addTerms(sys)(...str.split(''));
+
+export const trimWhite = str => str.replace(/\s/g,'');
+export const split = (str = '') => trimWhite(str).split('');
+export const fromString = str => addTerms(system())(...split(str));
+export const nextString = sys => str => split(str).map(successor(sys)).join('');

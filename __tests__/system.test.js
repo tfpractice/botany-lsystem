@@ -1,7 +1,9 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, fromString, setComm, setSucc, successor,system, } from 'src/system';
+import { addTermBin, addTerms, command, fromString, nextString, setComm, setSucc,
+  split,successor,system,trimWhite, } from 'src/system';
  
 const myString = 'F-f++ff-';
+const koch = setSucc(fromString('F − F + F + FF − F − F + F'))('F')('F − F + F + FF − F − F + F');
 
 describe('system', () => {
   describe('system', () => {
@@ -46,9 +48,30 @@ describe('system', () => {
       expect(addTerms(system())('a','b','c','d').size).toBe(4);
     });
   });
+  describe('trimWhite', () => {
+    it('returns a string without whitespace', () => {
+      expect(trimWhite(myString)).not.toContain(' ');
+    });
+  }); describe('split', () => {
+    it('returns a split string', () => {
+      expect(split(myString)).toContain('F');
+    });
+  });
   describe('fromString', () => {
     it('returns a new system with entries from the split string', () => {
-      expect(fromString(addTerms(system())('a','b','c','d'))(myString).size).toBe(4);
+      // expect(fromString(addTerms(system())('a','b','c','d'))(myString).size).toBe(8);
+      expect(fromString(myString).size).toBe(4);
+    });
+  });
+  describe('nextString', () => {
+    it('returns a new system with entries from the split string', () => {
+      console.log('nextString(koch)()', nextString(koch)('FFF'));
+      console.log('koch', koch);
+      console.log('trim', 'F − F + F + FF − F − F + F'.trim());
+      expect(nextString(fromString(myString))(myString)).toBeString();
+      expect(nextString(fromString(myString))('FFF').length).toBe(3);
+
+      // expect(nextString(koch)('FFF').length).toBe(3);
     });
   });
 });
