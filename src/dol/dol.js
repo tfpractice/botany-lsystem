@@ -1,7 +1,6 @@
 import { addMap, asMap,asSet,get, } from 'fenugreek-collections';
 
 export const DOL = (...terms) => asMap(asSet(terms));
-
 export const setSuccessor = sys => pred => succ =>
   addMap(sys)(pred)(succ);
   
