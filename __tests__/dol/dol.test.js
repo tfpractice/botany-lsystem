@@ -1,23 +1,20 @@
 import 'jasmine-expect';
 
-// import fenu from 'fenugreek-collections';
-// import * as DOL from 'src/dol';
+import { DOL, setSuccessor, successor, } from 'src/dol';
+const myTerms = [ 'a', 'b', 'al', 'ar', 'bl', 'br', ];
 
-import { DOL, } from 'src/dol';
-const myTerms = [ 'a','b', 'al','ar', 'bl', 'br', ];
-
-// const DOLset = (...terms) => asMap(asSet(terms));
-
-// console.log('fenu', fenu);
-
-// console.log('asMap', asMap);
 describe('DOL', () => {
   it('is creates a map of each term mapped to itself', () => {
-    console.log('DOL.DOL(...myTerms)', DOL(...myTerms));
-    expect(1).toEqual(1);
-
-    // expect(DOL.DOL(...myTerms).get('a')).toBe('a');
-
-    // expect(DOLset(...myTerms) instanceof Set).toBeTruthy();
+    expect(DOL(...myTerms).get('a')).toBe('a');
+  });
+});
+describe('setSuccessor', () => {
+  it('sets the successor term of the string', () => {
+    expect(setSuccessor(myTerms)('a')('b').get('a')).toBe('b');
+  });
+});
+describe('setSuccessor', () => {
+  it('sets the successor term of the string', () => {
+    expect(successor(setSuccessor(myTerms)('a')('b'))('a')).toBe('b');
   });
 });
