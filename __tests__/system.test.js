@@ -68,7 +68,6 @@ describe('system', () => {
   });
   describe('fromString', () => {
     it('returns a new system with entries from the split string', () => {
-      // expect(fromString(addTerms(system())('a','b','c','d'))(myString).size).toBe(8);
       expect(fromString(myString).size).toBe(4);
     });
   });

@@ -1,18 +1,18 @@
 import 'jasmine-expect';
-import { forward, getDelta, getDir, getMag, getX, getY, interpret, interpretBin, left,
-   right, rotate, setDelta, setForward, state, transX,
-    transY, vector, } from 'src/turtle';
-import { addTermBin, addTerms, command,commandString, fromString, nextString, setComm, setCommBin,
-      setSucc,setSuccBin,split,successor, system, trimWhite, } from 'src/system';
-    
+import { applyVector, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX, getY,
+   interpetComms, interpret, interpretBin, interpretString, left, right, rotate, setDelta,
+   setForward, state, stringStates, transX, transY, vector, } from 'src/turtle';
+import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
+      setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
+
 const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
-const myString = 'F−F+F+FF−F−F+F';
+const myString = 'F-F+F+FF-F-F+F';
 
-const koch = [[ 'F', forward, ], [ '-',left, ],[ '+', right, ],]
+const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
 
-console.log('koch',koch);
+console.log('koch', koch);
 describe('turtle', () => {
   describe('state', () => {
     it('returns an object with x,y and dir props', () => {
@@ -82,35 +82,40 @@ describe('turtle', () => {
   
   describe('interpretBin', () => {
     it('returns a new state with x and y changed', () => {
-      console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
-      
-      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+      expect(getY(interpretBin(myState, forward(myVector)))).toEqual(5);
+      expect(getDir(interpretBin(myState, forward(myVector)))).toEqual(Math.PI / 2);
     });
   });
-  describe('setForward', () => {
-    it('sets the key of the forward command', () => {
-      setForward();
+  describe('getStatesBin', () => {
+    it('appends a new state to the array', () => {
+      expect(getStatesBin([ myState, ], forward(myVector))).toBeArray();
     });
   });
-  describe('interpretBin', () => {
+  describe('getStates', () => {
     it('returns a new state with x and y changed', () => {
-      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
-      
-      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+      expect(getStates(myState)(...applyVector(koch)(myString)(myVector))).toBeArray();
+    });
+  }); describe('applyVector', () => {
+    it('applies a vector to each ohe systems commands', () => {
+      expect(applyVector(koch)(myString)(myVector)).toBeArray();
+    });
+  }); describe('stringStates', () => {
+    it('returns a new state with x and y changed', () => {
+      console.log('stringStates(koch)(myString)(myVector)(myState)', stringStates(koch)(myString)(myVector)(myState));
+      expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
     });
   });
-  describe('interpretBin', () => {
-    it('returns a new state with x and y changed', () => {
-      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
+  describe('interpetComms', () => {
+    it('calls multiple commands on the state', () => {
+      const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
       
-      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+      expect(interpetComms(myState)(...myComms)).toBeObject();
     });
   });
-  describe('setDelta', () => {
+  describe('interpretString', () => {
     it('returns a new state with x and y changed', () => {
-      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
-      
-      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+      console.log('interpretString(koch)(myString)(myVector)(myState)', interpretString(koch)(myString)(myVector)(myState));
+      expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();
     });
   });
 });
