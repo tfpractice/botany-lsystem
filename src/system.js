@@ -10,8 +10,9 @@ export const setSucc = sys => term => succ =>
 export const setComm = sys => term => comm =>
   addMap(sys)(term)(addMap(get(sys)(term))('command')(comm));
 
-// export const addTermBin = (sys,term) =>
-//   addMap(sys)(term)(successor(sys)(term).set('succ', term).set('command', identity));
+export const addTermBin = (sys,term) =>
+setComm(setSucc(sys)(term)(successor(sys)(term)))(term)(command(sys)(term));
+
 // export const addTerms = sys => (...terms) => terms.reduce(addTermBin, sys);
   
 // export const successor = sys => pred => get(sys)(pred);
