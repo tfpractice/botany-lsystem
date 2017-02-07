@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { command,successor,system, } from 'src/system';
+import { command, setComm, setSucc, successor, system, } from 'src/system';
 
 describe('system', () => {
   describe('system', () => {
@@ -17,14 +17,14 @@ describe('system', () => {
       expect(command(system())('a')).toBeFunction();
     });
   });
-  describe('getDir', () => {
+  describe('setSucc', () => {
     it('returns the x-value of a turtle state', () => {
-      // expect(getDir(state(1,2, Math.PI / 2))).toEqual(Math.PI / 2);
+      expect(successor(setSucc(system())('a')('b'))('a')).toBe('b');
     });
   });
-  describe('rotate', () => {
+  describe('setComm', () => {
     it('returns a new state with direction changed', () => {
-      // expect(getDir(rotate(Math.PI / 2)(state(1,2, Math.PI / 2)))).toEqual(Math.PI);
+      expect(command(setSucc(system())('a')(x => x))('a')).toBeFunction();
     });
   });
   describe('transX', () => {
