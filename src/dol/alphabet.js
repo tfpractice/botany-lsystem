@@ -1,1 +1,1 @@
-export const alphabet = (...terms) => new Set(terms);
+  export const alphabet = (...terms) => new Set(terms);
