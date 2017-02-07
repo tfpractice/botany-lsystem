@@ -12,6 +12,8 @@ export const getDelta = ({ delta = 0, }) => delta;
 export const transX = v => s => getX(s) + (getMag(v) * cos(getDir(s)));
 export const transY = v => s => getY(s) + (getMag(v) * sin(getDir(s)));
 export const rotate = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
+export const left = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
+export const right = v => s => state(getX(s), getY(s), getDir(s) - getDelta(v));
 export const forward = v => s => state(transX(v)(s), transY(v)(s), getDir(s));
 
 export const setForward = sys => term => v => setComm(sys)(term)(forward(mag));
@@ -19,4 +21,5 @@ export const setDelta = sys => term => v => setComm(sys)(term)(rotate(mag));
 export const interpret = sys => term => v => state => command(sys)(term)(v)(state);
 export const interpretBin = (state, command) => command(state);
 
+// export const statesBin =([], command)=>
 // export const setVector = ({ mag, delta, }) => sys => term;

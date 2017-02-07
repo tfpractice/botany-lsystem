@@ -1,9 +1,18 @@
 import 'jasmine-expect';
-import { forward, getDelta,getDir,getMag,getX, getY, interpretBin, rotate,
-  state, transX, transY,vector, } from 'src/turtle';
-const myState = state(1,2, Math.PI / 2);
+import { forward, getDelta, getDir, getMag, getX, getY, interpret, interpretBin, left,
+   right, rotate, setDelta, setForward, state, transX,
+    transY, vector, } from 'src/turtle';
+import { addTermBin, addTerms, command,commandString, fromString, nextString, setComm, setCommBin,
+      setSucc,setSuccBin,split,successor, system, trimWhite, } from 'src/system';
+    
+const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
+const myString = 'F−F+F+FF−F−F+F';
 
+const koch = [[ 'F', forward, ], [ '-',left, ],[ '+', right, ],]
+.reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
+
+console.log('koch',koch);
 describe('turtle', () => {
   describe('state', () => {
     it('returns an object with x,y and dir props', () => {
@@ -45,6 +54,16 @@ describe('turtle', () => {
       expect(getDir(rotate(myVector)(myState))).toEqual(Math.PI);
     });
   });
+  describe('right', () => {
+    it('returns a new state with direction changed', () => {
+      expect(getDir(right(myVector)(myState))).toEqual(0);
+    });
+  });
+  describe('left', () => {
+    it('returns a new state with direction changed', () => {
+      expect(getDir(left(myVector)(myState))).toEqual(Math.PI);
+    });
+  });
   describe('transX', () => {
     it('translates the x-value of a turtle state', () => {
       expect(Math.round(transX(myVector)(myState))).toEqual(1);
@@ -64,7 +83,33 @@ describe('turtle', () => {
   describe('interpretBin', () => {
     it('returns a new state with x and y changed', () => {
       console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
-
+      
+      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+    });
+  });
+  describe('setForward', () => {
+    it('sets the key of the forward command', () => {
+      setForward();
+    });
+  });
+  describe('interpretBin', () => {
+    it('returns a new state with x and y changed', () => {
+      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
+      
+      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+    });
+  });
+  describe('interpretBin', () => {
+    it('returns a new state with x and y changed', () => {
+      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
+      
+      // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
+    });
+  });
+  describe('setDelta', () => {
+    it('returns a new state with x and y changed', () => {
+      // console.log('interpretBin(myState, forward(myVector)', interpretBin(myState, forward(myVector)));
+      
       // expect((interpretBin(myState, forward(myVector)).toEqual(Math.PI / 2);
     });
   });
