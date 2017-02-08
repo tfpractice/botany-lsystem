@@ -27,8 +27,9 @@ export const interpretBin = (state, command) => command(state);
 export const interpetComms = (s = state()) => (...comms) => comms.reduce(interpretBin, s);
 export const interpretString = sys => str => v => s =>
  interpetComms(s)(...(commandString(sys)(str).map(f => f(v))));
-export const applyVector = sys => str => v => commandString(sys)(str).map(f => f(v));
 
+export const applyVector = sys => str => v => commandString(sys)(str).map(f => f(v));
+export const scaleVector = v => factor => v * factor;
 export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
 export const getStates = s => (...comms) => comms.reduce(getStatesBin,[ s, ]);
 
