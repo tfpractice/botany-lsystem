@@ -1,10 +1,8 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command,commandString, fromString, genNextBin,
-   genNextDepth, nextString, setComm,setCommBin,setSucc,setSuccBin,split,
+import { addTermBin, addTerms, command, commandString, fromString, genNextBin,
+   genNextDepth, nextString, setComm, setCommBin, setSucc, setSuccBin, split,
    successor, system, trimWhite, } from 'src/system';
-import { forward,
-left,
-right, } from 'src/turtle';
+import { forward, left, right, } from 'src/turtle';
 const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
@@ -42,12 +40,12 @@ describe('system', () => {
     });
   }); describe('setSuccBin', () => {
     it('returns the x-value of a turtle state', () => {
-      expect(successor(setSuccBin(system(),[ 'a','b', ]))('a')).toBe('b');
+      expect(successor(setSuccBin(system(), [ 'a', 'b', ]))('a')).toBe('b');
     });
   });
   describe('setCommBin', () => {
     it('returns a new state with direction changed', () => {
-      expect(command(setCommBin(system(),[ 'a',x => x, ]))('a')).toBeFunction();
+      expect(command(setCommBin(system(), [ 'a', x => x, ]))('a')).toBeFunction();
     });
   });
   describe('addTermBin', () => {
@@ -58,7 +56,7 @@ describe('system', () => {
   });
   describe('addTerms', () => {
     it('adds multiple terms to a system', () => {
-      expect(addTerms(system())('a','b','c','d').size).toBe(4);
+      expect(addTerms(system())('a', 'b', 'c', 'd').size).toBe(4);
     });
   });
   describe('trimWhite', () => {

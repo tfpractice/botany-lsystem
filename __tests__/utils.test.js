@@ -6,4 +6,14 @@ describe('utils', () => {
       expect(callOn(12)(identity)).toEqual(12);
     });
   });
+  describe('identity', () => {
+    it('returns the value it was given originally', () => {
+      expect(identity(12)).toEqual(12);
+    });
+  });
+  describe('kestrel', () => {
+    it('returns a function that returns a constant value', () => {
+      expect(kestrel(12)(12)).toEqual(12);
+    });
+  });
 });
