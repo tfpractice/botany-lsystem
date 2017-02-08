@@ -1,7 +1,6 @@
 import { addMap, asMap, get, } from 'fenugreek-collections';
 import { callOn, identity,kestrel, } from './utils';
 
-// export const identity = x => x;
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;
 export const command = sys => term => get(get(sys)(term))('command') || kestrel(identity);
