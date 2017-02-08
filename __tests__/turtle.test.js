@@ -1,16 +1,19 @@
 import 'jasmine-expect';
-import { applyVector, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX, getY,
-   interpetComms, interpret, interpretBin, interpretString, left, right, rotate, setDelta,
-   setForward, state, stringStates, transX, transY, vector, } from 'src/turtle';
+import { applyVector, dist, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX,
+   getY, interpetComms, interpret, interpretBin, interpretString, left, right, rotate,
+   setDelta, setForward, span, state, stringStates,transX, transY,vector, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 
 const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
 const myString = 'F-F+F+FF-F-F+F';
+const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
 
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
+
+console.log(state());
 
 describe('turtle', () => {
   describe('state', () => {
@@ -106,14 +109,24 @@ describe('turtle', () => {
   });
   describe('interpetComms', () => {
     it('calls multiple commands on the state', () => {
-      const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
-
       expect(interpetComms(myState)(...myComms)).toBeObject();
     });
   });
   describe('interpretString', () => {
     it('returns a new state with x and y changed', () => {
+      console.log('inter',interpretString(koch)(myString)(myVector)(myState));
       expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();
+    });
+  });
+  describe('dist', () => {
+    it('returns a new state with x and y changed', () => {
+      expect(dist(myState)(interpetComms(state())(...myComms))).toBeNumber();
+    });
+  });
+  describe('span', () => {
+    it('returns a new state with x and y changed', () => {
+      console.log((span(koch)(myString)(myVector)(myState)));
+      expect((span(koch)(myString)(myVector)(myState))).toBeNumber();
     });
   });
 });
