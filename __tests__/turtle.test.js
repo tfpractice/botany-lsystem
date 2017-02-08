@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { applyVector, dist, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX,
+import { applyVector, copy,dist, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX,
    getY, interpetComms, interpret, interpretBin, interpretString, left, right, rotate,
    setDelta, setForward, span, state, stringStates,transX, transY,vector, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
@@ -12,8 +12,6 @@ const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVect
 
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
-
-console.log(state());
 
 describe('turtle', () => {
   describe('state', () => {
@@ -34,6 +32,11 @@ describe('turtle', () => {
   describe('getDir', () => {
     it('returns the x-value of a turtle state', () => {
       expect(getDir(myState)).toEqual(Math.PI / 2);
+    });
+  });
+  describe('copu', () => {
+    it('ensures that an object returns a valid state', () => {
+      expect(copy()).toBeObject();
     });
   });
   describe('vector', () => {
@@ -103,7 +106,6 @@ describe('turtle', () => {
     });
   }); describe('stringStates', () => {
     it('returns a new state with x and y changed', () => {
-      console.log('stringStates()', stringStates(koch)(myString)(myVector)(myState));
       expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
     });
   });
@@ -114,7 +116,6 @@ describe('turtle', () => {
   });
   describe('interpretString', () => {
     it('returns a new state with x and y changed', () => {
-      console.log('inter',interpretString(koch)(myString)(myVector)(myState));
       expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();
     });
   });
@@ -125,7 +126,6 @@ describe('turtle', () => {
   });
   describe('span', () => {
     it('returns a new state with x and y changed', () => {
-      console.log((span(koch)(myString)(myVector)(myState)));
       expect((span(koch)(myString)(myVector)(myState))).toBeNumber();
     });
   });

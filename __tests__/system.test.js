@@ -92,7 +92,6 @@ describe('system', () => {
     });
   }); describe('genNextDepth', () => {
     it('returns a new system with entries from the split string', () => {
-      console.log(genNextDepth(koch)('F')(2));
       expect(genNextDepth(koch)(myString)(2)).toBeString();
     });
   });
