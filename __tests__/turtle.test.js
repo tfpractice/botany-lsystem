@@ -1,7 +1,7 @@
 import 'jasmine-expect';
 import { applyVector, copy,dist, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX,
    getY, interpetComms, interpret,interpretBin, interpretString, left, right, rotate, setDelta,
-   setForward, span, state, stringStates, sysVector,transX, transY,vector, } from 'src/turtle';
+   setForward, span, state, stringStates, succSpan,sysVector,transX, transY,vector, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 
@@ -127,6 +127,12 @@ describe('turtle', () => {
   describe('span', () => {
     it('returns a new state with x and y changed', () => {
       expect((span(koch)(myString)(myVector)(myState))).toBeNumber();
+    });
+  });
+  describe('succSpan', () => {
+    it('determines the span of a systems successor string', () => {
+      console.log('succSpan', succSpan(koch)('F')(myVector));
+      expect(1).toEqual(1);
     });
   });
 });

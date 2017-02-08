@@ -1,6 +1,6 @@
 import { lastV, } from 'fenugreek-collections';
 import { callBin, callOn, pipeline, } from './utils';
-import { commandString, fromString, nextString, setComm, } from './system';
+import { commandString, fromString, nextString,setComm, successor, } from './system';
 
 const { cos, sin, pow, sqrt, } = Math;
 
@@ -44,10 +44,11 @@ export const stringStates = sys => str => v => s =>
 getStates(s)(...sysVector(sys)(str)(v));
 
 // export const span = state => (...comms) => getStates();
-export const xDiff = s0 => s1 => getX(s1) - getX(s0);
-export const yDiff = s0 => s1 => getY(s1) - getY(s0);
+export const xDiff = s0 => s1 => getX(copy(s1)) - getX(copy(s0));
+export const yDiff = s0 => s1 => getY(copy(s1)) - getY(copy(s0));
 
 export const dist = s0 => s1 => (sqrt(pow(xDiff(s0)(s1), 2) + pow(xDiff(s0)(s1), 2)));
 export const span = sys => str => v => s => (dist(s)(interpretString(sys)(str)(v)(s)));
+export const succSpan = sys => k => v => span(sys)(successor(sys)(k))(v)(state());
 
 // export const setVector = ({ mag, delta, }) => sys => term;

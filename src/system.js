@@ -4,12 +4,17 @@ import { callOn, identity,kestrel, } from './utils';
 export const angleChars = new Set([ '+','-', ]);
 export const trimWhite = str => str.replace(/\s/g, '');
 export const split = (str = '') => trimWhite(str).split('');
-export const segmentChars = str => split(str).filter(xhas(angleChars));
-export const segmentCount = str => segmentChars(str).length;
+export const segChars = str => split(str).filter(xhas(angleChars));
+export const segCount = str => segChars(str).length;
+
+// export const succSpan = sys => k => v => span(sys)(successor(sys)(k))(v)(state());
+
+// span(state())(commandString(successor(sys)(k)))
+
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;
 export const command = sys => term => get(get(sys)(term))('command') || kestrel(identity);
-export const succSize = sys => term => segmentCount(successor(sys)(term));
+export const succSize = sys => term => segCount(successor(sys)(term));
 export const setSucc = sys => term => succ =>
   addMap(sys)(term)(addMap(get(sys)(term))('succ')(succ));
 

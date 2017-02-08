@@ -1,6 +1,6 @@
 import 'jasmine-expect';
 import { addTermBin, addTerms, angleChars, command, commandString, fromString,
-  genNextBin, genNextDepth, nextString, segmentChars, segmentCount, setComm,
+  genNextBin, genNextDepth, nextString, segChars, segCount, setComm,
   setCommBin, setSucc,setSuccBin, split, successor, succSize, system, trimWhite, }
   from 'src/system';
 import { forward, left, right, } from 'src/turtle';
@@ -22,14 +22,14 @@ describe('system', () => {
       expect(command(system())('a')()(12)).toEqual(12);
     });
   });
-  describe('segmentChars', () => {
+  describe('segChars', () => {
     it('returns all the nonRotating characters in a string', () => {
-      expect(segmentChars(myString)).toContain('F');
+      expect(segChars(myString)).toContain('F');
     });
   });
-  describe('segmentCount', () => {
+  describe('segCount', () => {
     it('returns all the nonRotating characters in a string', () => {
-      expect(segmentCount(myString)).toEqual(8);
+      expect(segCount(myString)).toEqual(8);
     });
   });
   describe('command', () => {
