@@ -90,7 +90,8 @@ describe('system', () => {
     it('returns a new system with entries from the split string', () => {
       expect(genNextBin(myString, nextString(koch))).toBeString();
     });
-  }); describe('genNextDepth', () => {
+  });
+  describe('genNextDepth', () => {
     it('returns a new system with entries from the split string', () => {
       expect(genNextDepth(koch)(myString)(2)).toBeString();
     });

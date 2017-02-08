@@ -28,13 +28,15 @@ export const interpetComms = s => (...comms) => comms.reduce(interpretBin, copy(
 export const interpretString = sys => str => v => s =>
  interpetComms(s)(...(commandString(sys)(str).map(f => f(v))));
 
-export const applyVector = sys => str => v => commandString(sys)(str).map(f => f(v));
+export const sysVector = sys => str => v => commandString(sys)(str).map(f => f(v));
+export const applyVector = v => fn => fn(v);
 export const scaleVector = v => factor => v * factor;
 export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
 export const getStates = s => (...comms) => comms.reduce(getStatesBin,[ s, ]);
 
+// export const nextState = sys=>str=>v=>s=>
 export const stringStates = sys => str => v => s =>
-getStates(s)(...applyVector(sys)(str)(v));
+getStates(s)(...sysVector(sys)(str)(v));
 
 // export const span = state => (...comms) => getStates();
 export const xDiff = s0 => s1 => getX(s1) - getX(s0);
