@@ -1,5 +1,5 @@
 import { addMap, asMap, get, } from 'fenugreek-collections';
-import { identity, kestrel, } from './utils';
+import { callOn, identity,kestrel, } from './utils';
 
 // export const identity = x => x;
 export const system = sys => asMap(sys);
@@ -27,7 +27,7 @@ export const trimWhite = str => str.replace(/\s/g, '');
 export const split = (str = '') => trimWhite(str).split('');
 export const fromString = str => addTerms(system())(...split(str));
 export const nextString = sys => str => split(str).map(successor(sys)).join('');
-export const genNextBin = (str, fn) => fn(str);
+export const genNextBin = (str, fn) => callOn(str)(fn);
 export const genNextDepth = sys => str => (d = 1) =>
  Array(d).fill(nextString(sys)).reduce(genNextBin, str);
 export const commandString = sys => str => split(str).map(command(sys));
