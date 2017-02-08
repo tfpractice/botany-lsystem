@@ -1,4 +1,4 @@
-import { addMap, asMap, asSet, get, } from 'fenugreek-collections';
+import { addMap, asMap, get, } from 'fenugreek-collections';
 
 export const identity = x => x;
 export const system = sys => asMap(sys);
@@ -11,8 +11,8 @@ export const setSucc = sys => term => succ =>
 export const setComm = sys => term => comm =>
   addMap(sys)(term)(addMap(get(sys)(term))('command')(comm));
 
-export const setCommBin = (sys, [ term, command, ]) =>
-  addMap(sys)(term)(addMap(get(sys)(term))('command')(command));
+export const setCommBin = (sys, [ term, comm, ]) =>
+  addMap(sys)(term)(addMap(get(sys)(term))('command')(comm));
 
 export const setSuccBin = (sys, [ term, succ, ]) =>
   addMap(sys)(term)(addMap(get(sys)(term))('succ')(succ));
@@ -26,4 +26,7 @@ export const trimWhite = str => str.replace(/\s/g, '');
 export const split = (str = '') => trimWhite(str).split('');
 export const fromString = str => addTerms(system())(...split(str));
 export const nextString = sys => str => split(str).map(successor(sys)).join('');
+export const genNextBin = (str, fn) => fn(str);
+export const genNextDepth = sys => str => (d = 1) =>
+ Array(d).fill(nextString(sys)).reduce(genNextBin, str);
 export const commandString = sys => str => split(str).map(command(sys));

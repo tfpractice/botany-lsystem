@@ -1,9 +1,13 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command,commandString, fromString, nextString, setComm, setCommBin,
-  setSucc,setSuccBin,split,successor,system, trimWhite, } from 'src/system';
- 
-const myString = 'F-f++ff-';
-const koch = setSucc(fromString('F − F + F + FF − F − F + F'))('F')('F − F + F + FF − F − F + F');
+import { addTermBin, addTerms, command,commandString, fromString, genNextBin,
+   genNextDepth, nextString, setComm,setCommBin,setSucc,setSuccBin,split,
+   successor, system, trimWhite, } from 'src/system';
+import { forward,
+left,
+right, } from 'src/turtle';
+const myString = 'F-F+F+FF-F-F+F';
+const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
+.reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
 
 describe('system', () => {
   describe('system', () => {
@@ -68,7 +72,7 @@ describe('system', () => {
   });
   describe('fromString', () => {
     it('returns a new system with entries from the split string', () => {
-      expect(fromString(myString).size).toBe(4);
+      expect(fromString(myString).size).toBe(3);
     });
   });
   describe('nextString', () => {
@@ -76,9 +80,20 @@ describe('system', () => {
       expect(nextString(fromString(myString))(myString)).toBeString();
       expect(nextString(fromString(myString))('FFF').length).toBe(3);
     });
-  }); describe('commandString', () => {
+  });
+  describe('commandString', () => {
     it('returns a new system with entries from the split string', () => {
       expect(commandString(fromString(myString))(myString)).toBeArray();
+    });
+  });
+  describe('genNextBin', () => {
+    it('returns a new system with entries from the split string', () => {
+      expect(genNextBin(myString, nextString(koch))).toBeString();
+    });
+  }); describe('genNextDepth', () => {
+    it('returns a new system with entries from the split string', () => {
+      console.log(genNextDepth(koch)('F')(2));
+      expect(genNextDepth(koch)(myString)(2)).toBeString();
     });
   });
 });

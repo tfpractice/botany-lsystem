@@ -12,7 +12,6 @@ const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
 
-console.log('koch', koch);
 describe('turtle', () => {
   describe('state', () => {
     it('returns an object with x,y and dir props', () => {
@@ -79,7 +78,7 @@ describe('turtle', () => {
       expect(getDir(forward(myVector)(myState))).toEqual(Math.PI / 2);
     });
   });
-  
+
   describe('interpretBin', () => {
     it('returns a new state with x and y changed', () => {
       expect(getY(interpretBin(myState, forward(myVector)))).toEqual(5);
@@ -101,20 +100,19 @@ describe('turtle', () => {
     });
   }); describe('stringStates', () => {
     it('returns a new state with x and y changed', () => {
-      console.log('stringStates(koch)(myString)(myVector)(myState)', stringStates(koch)(myString)(myVector)(myState));
+      console.log('stringStates()', stringStates(koch)(myString)(myVector)(myState));
       expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
     });
   });
   describe('interpetComms', () => {
     it('calls multiple commands on the state', () => {
       const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
-      
+
       expect(interpetComms(myState)(...myComms)).toBeObject();
     });
   });
   describe('interpretString', () => {
     it('returns a new state with x and y changed', () => {
-      console.log('interpretString(koch)(myString)(myVector)(myState)', interpretString(koch)(myString)(myVector)(myState));
       expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();
     });
   });
