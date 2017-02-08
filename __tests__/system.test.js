@@ -1,7 +1,8 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, commandString, fromString, genNextBin,
-   genNextDepth, nextString, setComm, setCommBin, setSucc, setSuccBin, split,
-   successor, system, trimWhite, } from 'src/system';
+import { addTermBin, addTerms, angleChars, command, commandString, fromString,
+  genNextBin, genNextDepth, nextString, segmentChars, segmentCount, setComm,
+  setCommBin, setSucc,setSuccBin, split, successor, succSize, system, trimWhite, }
+  from 'src/system';
 import { forward, left, right, } from 'src/turtle';
 const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
@@ -21,6 +22,16 @@ describe('system', () => {
       expect(command(system())('a')()(12)).toEqual(12);
     });
   });
+  describe('segmentChars', () => {
+    it('returns all the nonRotating characters in a string', () => {
+      expect(segmentChars(myString)).toContain('F');
+    });
+  });
+  describe('segmentCount', () => {
+    it('returns all the nonRotating characters in a string', () => {
+      expect(segmentCount(myString)).toEqual(8);
+    });
+  });
   describe('command', () => {
     it('returns the y-value of a turtle state', () => {
       expect(command(system())('a')).toBeFunction();
@@ -32,6 +43,10 @@ describe('system', () => {
   describe('setSucc', () => {
     it('returns the x-value of a turtle state', () => {
       expect(successor(setSucc(system())('a')('b'))('a')).toBe('b');
+    });
+  }); describe('succSize', () => {
+    it('returns the x-value of a turtle state', () => {
+      expect(succSize(koch)('F')).toBe(8);
     });
   });
   describe('setComm', () => {

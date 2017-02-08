@@ -20,7 +20,6 @@ describe('utils', () => {
   describe('callOn', () => {
     it('calls a function on an argument', () => {
       expect(callOn(12)(identity)).toEqual(12);
-      console.log('callOn', callOn(3)(4));
     });
   });
   describe('callBin', () => {
@@ -30,7 +29,6 @@ describe('utils', () => {
   });
   describe('pipeline', () => {
     it('invokes a series of functions on an object', () => {
-      console.log('pipeline(12)(...Array(5).fill(identity))', pipeline(12)(...Array(5).fill(identity)));
       expect(pipeline(12)(...Array(5).fill(identity))).toEqual(12);
     });
   });
