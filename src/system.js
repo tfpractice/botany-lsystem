@@ -1,9 +1,10 @@
 import { addMap, asMap, get, } from 'fenugreek-collections';
+import { identity, kestrel, } from './utils';
 
-export const identity = x => x;
+// export const identity = x => x;
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;
-export const command = sys => term => get(get(sys)(term))('command') || identity;
+export const command = sys => term => get(get(sys)(term))('command') || kestrel(identity);
 
 export const setSucc = sys => term => succ =>
   addMap(sys)(term)(addMap(get(sys)(term))('succ')(succ));

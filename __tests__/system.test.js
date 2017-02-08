@@ -18,7 +18,7 @@ describe('system', () => {
       expect(successor(system())('a')).toEqual('a');
     });
     it('defaults to the identity function', () => {
-      expect(command(system())('a')(12)).toEqual(12);
+      expect(command(system())('a')()(12)).toEqual(12);
     });
   });
   describe('command', () => {
