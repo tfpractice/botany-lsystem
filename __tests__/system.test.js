@@ -51,7 +51,7 @@ describe('system', () => {
   describe('addTermBin', () => {
     it('adds a term to a system', () => {
       expect(successor(addTermBin(system(), 'a'))('a')).toBe('a');
-      expect(command(addTermBin(system(), 'a'))('a')(12)).toBe(12);
+      expect(command(addTermBin(system(), 'a'))('a')()(12)).toBe(12);
     });
   });
   describe('addTerms', () => {
