@@ -1,5 +1,5 @@
 import { lastV, } from 'fenugreek-collections';
-import { callOn, } from './utils';
+import { callBin, callOn, pipeline, } from './utils';
 import { commandString, fromString, nextString, setComm, } from './system';
 
 const { cos, sin, pow, sqrt, } = Math;
