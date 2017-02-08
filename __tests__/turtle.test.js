@@ -131,8 +131,7 @@ describe('turtle', () => {
   });
   describe('succSpan', () => {
     it('determines the span of a systems successor string', () => {
-      console.log('succSpan', succSpan(koch)('F')(myVector));
-      expect(1).toEqual(1);
+      expect(succSpan(koch)('F')(myVector)).toBeNumber(1);
     });
   });
 });
