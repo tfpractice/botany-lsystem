@@ -1,6 +1,12 @@
 import 'jasmine-expect';
-import { callBin, callOn, identity,kestrel, pipeline, } from 'src/utils';
+import { callBin, callOn, identity,isFunc,kestrel, pipeline, } from 'src/utils';
+
 describe('utils', () => {
+  describe('isFunc', () => {
+    it('checks if an object is a function', () => {
+      expect(isFunc(identity)).toBeTrue();
+    });
+  });
   describe('identity', () => {
     it('returns the value it was given originally', () => {
       expect(identity(12)).toEqual(12);
@@ -14,6 +20,7 @@ describe('utils', () => {
   describe('callOn', () => {
     it('calls a function on an argument', () => {
       expect(callOn(12)(identity)).toEqual(12);
+      console.log('callOn', callOn(3)(4));
     });
   });
   describe('callBin', () => {
