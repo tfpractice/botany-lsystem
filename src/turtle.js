@@ -11,7 +11,6 @@ export const forward = v => translate(getMag(v));
 export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 
 export const applyVector = v => fn => callOn(copyV(v))(fn);
-export const scaleVector = v => factor => v * factor;
 export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
 export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 

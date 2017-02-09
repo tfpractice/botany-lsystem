@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { copyV, getDelta, getMag, setDelta, setMag, vector, } from 'src/vector';
+import { copyV, getDelta, getMag, scale, setDelta, setMag, vector, } from 'src/vector';
 
 const myMag = 3;
 const myDelta = Math.PI / 3;
@@ -35,6 +35,11 @@ describe('vector', () => {
     it('returns a copy of th vector', () => {
       expect(getMag(copyV(myVector))).toEqual(myMag);
       expect(getDelta(copyV(myVector))).toEqual(myDelta);
+    });
+  });
+  describe('scale', () => {
+    it('returns a vector with a modified magnitude', () => {
+      expect(getMag(scale(5)(myVector))).toEqual(15);
     });
   });
 });

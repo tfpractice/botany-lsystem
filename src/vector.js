@@ -6,3 +6,5 @@ export const copyV = v => vector(getMag(v), getDelta(v));
 
 export const setMag = (mag = 1) => v => ({ mag, delta: getDelta(v), });
 export const setDelta = (delta = 0) => v => ({ mag: getMag(v), delta, });
+
+export const scale = (fact = 1) => v => setMag(fact * getMag(v))(v);
