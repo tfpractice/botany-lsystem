@@ -1,9 +1,12 @@
 import 'jasmine-expect';
-import { applyVector, copy,dist, forward, getDir, getStates, getStatesBin, getX,
-   getY, interpetComms, interpret, interpretString, left, right, rotate, setDelta,
-   setForward, span, state, stringStates, succSpan,sysVector,transX, transY, } from 'src/turtle';
+
+import { applyVector, dist, forward, getStates, getStatesBin,
+    interpetComms, interpret, interpretString, left, right, rotate, setDelta,
+   setForward, span, stringStates, succSpan,sysVector,transX, transY, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
+import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
+
 import { vector, } from 'src/vector';
 const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
