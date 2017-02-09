@@ -30,11 +30,6 @@ describe('state', () => {
   });
   describe('xDiff', () => {
     it('reutns the x prop difference of two states', () => {
-      console.log(myState);
-      console.log((transX(3)(myState)));
-
-      console.log(Math.fround(xDiff(myState)(transX(3)(myState))).toPrecision(3));
-      console.log(3 * xFact(myState));
       expect(xDiff(myState)(transX(3)(myState))).toBeNumber();
     });
   });

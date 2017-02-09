@@ -1,4 +1,5 @@
 import { callBin, digify, pipeline, } from './utils';
+
 const { cos, sin, pow, sqrt, fround, } = Math;
 const def = () => ({ x: 0, y: 0, dir: 0, });
 

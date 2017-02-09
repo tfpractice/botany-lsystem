@@ -4,7 +4,7 @@ import { commandString, fromString, nextString,setComm, successor, } from './sys
 import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
 import { copyS, getDir, getX, getY, rotate, setDir,setX, setY, state, translate, } from './state';
 
-const { cos, sin, pow, sqrt,fround, } = Math;
+const { cos, sin, pow, sqrt, } = Math;
 
 export const left = v => rotate(getDelta(v));
 export const right = v => rotate(-1 * getDelta(v));
