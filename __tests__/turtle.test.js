@@ -33,16 +33,6 @@ describe('turtle', () => {
     });
   });
 
-  // describe('transX', () => {
-  //   it('translates the x-value of a turtle state', () => {
-  //     expect(Math.round(transX(myVector)(myState))).toEqual(1);
-  //   });
-  // });
-  // describe('transY', () => {
-  //   it('translates the y-value of a turtle state', () => {
-  //     expect(transY(myVector)(myState)).toEqual(5);
-  //   });
-  // });
   describe('forward', () => {
     it('returns a new state with x and y changed', () => {
       expect(getDir(forward(myVector)(myState))).toEqual(Math.PI / 2);
