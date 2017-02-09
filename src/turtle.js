@@ -1,6 +1,7 @@
 import { lastV, } from 'fenugreek-collections';
 import { callBin, callOn, pipeline, } from './utils';
 import { commandString, fromString, nextString,setComm, successor, } from './system';
+import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
 
 const { cos, sin, pow, sqrt, } = Math;
 
@@ -10,10 +11,6 @@ export const getDir = ({ dir, } = { dir: 0, }) => dir;
 
 export const state = (x = 0, y = 0, dir = 0) => ({ x, y, dir, });
 export const copy = s => state(getX(s), getY(s), getDir(s));
-
-export const getMag = ({ mag, } = { mag: 0, }) => mag;
-export const getDelta = ({ delta, } = { delta: 0, }) => delta;
-export const vector = (mag = 0, delta = 0) => ({ mag, delta, });
 
 export const transX = v => s => getX(s) + (getMag(v) * cos(getDir(s)));
 export const transY = v => s => getY(s) + (getMag(v) * sin(getDir(s)));
@@ -25,14 +22,14 @@ export const forward = v => s => state(transX(v)(s), transY(v)(s), getDir(s));
 
 export const interpetComms = s => pipeline(copy(s));
 
-export const applyVector = v => fn => callOn(v)(fn);
+export const applyVector = v => fn => callOn(copyV(v))(fn);
 export const scaleVector = v => factor => v * factor;
 export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
 export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 
 export const sysVector = sys => str => v => commandString(sys)(str).map(callOn(v));
 export const interpretString = sys => str => v => s =>
- pipeline(copy(s))(...(commandString(sys)(str).map(callOn(v))));
+ pipeline(copy(s))(...(commandString(sys)(str).map(callOn(copyV(v)))));
  
 export const stringStates = sys => str => v => s =>
 getStates(s)(...sysVector(sys)(str)(v));

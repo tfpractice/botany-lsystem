@@ -1,10 +1,10 @@
 import 'jasmine-expect';
-import { applyVector, copy,dist, forward, getDelta, getDir, getMag, getStates, getStatesBin, getX,
+import { applyVector, copy,dist, forward, getDir, getStates, getStatesBin, getX,
    getY, interpetComms, interpret, interpretString, left, right, rotate, setDelta,
-   setForward, span, state, stringStates, succSpan,sysVector,transX, transY,vector, } from 'src/turtle';
+   setForward, span, state, stringStates, succSpan,sysVector,transX, transY, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
-
+import { vector, } from 'src/vector';
 const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
 const myString = 'F-F+F+FF-F-F+F';
@@ -39,21 +39,7 @@ describe('turtle', () => {
       expect(copy()).toBeObject();
     });
   });
-  describe('vector', () => {
-    it('returns an object with magnitude and delta', () => {
-      expect(vector(10, Math.PI / 3)).toBeObject();
-    });
-  });
-  describe('getMag', () => {
-    it('returns the vectors magnitude', () => {
-      expect(getMag(vector(10, Math.PI / 3))).toEqual(10);
-    });
-  });
-  describe('getDelta', () => {
-    it('returns the vectors magnitude', () => {
-      expect(getDelta(vector(10, Math.PI / 3))).toEqual(Math.PI / 3);
-    });
-  });
+
   describe('rotate', () => {
     it('returns a new state with direction changed', () => {
       expect(getDir(rotate(myVector)(myState))).toEqual(Math.PI);
