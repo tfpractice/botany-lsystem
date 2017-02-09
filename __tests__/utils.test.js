@@ -1,6 +1,6 @@
 import 'jasmine-expect';
-import { callBin, callOn,catCall,catCallBin, identity, isFunc, kestrel,
-   lastCall, pipeline, } from 'src/utils';
+import { callBin, callOn,catCall, identity, isFunc, kestrel, lastCall,
+   pipeline, spreadPipe, } from 'src/utils';
 
 describe('utils', () => {
   describe('isFunc', () => {
@@ -36,6 +36,18 @@ describe('utils', () => {
   describe('lastCall', () => {
     it('calls a function on the last value of a collection', () => {
       expect(lastCall([ 1,2,3, ])(x => x * x)).toEqual(9);
+    });
+  });
+  describe('catCall', () => {
+    it('calls a function called on a collections last value and appends', () => {
+      expect(catCall([ 1,2,3, ],x => x * x)).toBeArray();
+      expect(catCall([ 1,2,3, ],x => x * x)).toContain(9);
+    });
+  });
+  describe('spreadPipe', () => {
+    it('returns an array of pipeline return values', () => {
+      expect(spreadPipe(...Array(5).fill(x => x + 2))(12)).toBeArray();
+      expect(spreadPipe(...Array(5).fill(x => x + 2))(12)).toContain(22);
     });
   });
 });
