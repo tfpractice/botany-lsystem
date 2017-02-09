@@ -23,8 +23,6 @@ export const left = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
 export const right = v => s => state(getX(s), getY(s), getDir(s) - getDelta(v));
 export const forward = v => s => state(transX(v)(s), transY(v)(s), getDir(s));
 
-export const interpretBin = (s, comm) => callOn(copy(s))(comm);
-export const nextStateBin = (s, comm) => callOn(copy(s))(comm);
 export const interpetComms = s => pipeline(copy(s));
 
 export const applyVector = v => fn => callOn(v)(fn);
@@ -34,7 +32,8 @@ export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 
 export const sysVector = sys => str => v => commandString(sys)(str).map(callOn(v));
 export const interpretString = sys => str => v => s =>
- interpetComms(s)(...(commandString(sys)(str).map(callOn(v))));
+ pipeline(copy(s))(...(commandString(sys)(str).map(callOn(v))));
+ 
 export const stringStates = sys => str => v => s =>
 getStates(s)(...sysVector(sys)(str)(v));
 export const interpret = sys => term => v => s => command(sys)(term)(v)(copy(s));
