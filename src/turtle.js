@@ -8,7 +8,10 @@ const { cos, sin, pow, sqrt, } = Math;
 
 export const transX = v => s => getX(s) + (getMag(v) * cos(getDir(s)));
 export const transY = v => s => getY(s) + (getMag(v) * sin(getDir(s)));
+
 export const rotate = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
+
+// export const rotate = v => s => setDir(getDelta(v) + getDir(s));
 
 export const left = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
 export const right = v => s => state(getX(s), getY(s), getDir(s) - getDelta(v));
