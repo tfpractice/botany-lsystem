@@ -1,11 +1,13 @@
 import 'jasmine-expect';
-import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX,
-  transY, xDiff, xFact, yDiff, yFact, } from 'src/state';
+import { copyS, dist, getDir, getX, getY, setDir, setX, setY, state, translate,
+  transX, transY, xDiff, xFact, yDiff,yFact, } from 'src/state';
 
 const myX = 1.0;
 const myY = 2.0;
 const myDir = Math.PI / 2;
 const myState = state(myX, myY, myDir);
+
+// const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
 
 describe('state', () => {
   describe('state', () => {
@@ -36,6 +38,11 @@ describe('state', () => {
   describe('yDiff', () => {
     it('reutns the y prop difference of two states', () => {
       expect(yDiff(myState)(transY(3)(myState))).toEqual((3 * yFact(myState)));
+    });
+  });
+  describe('dist', () => {
+    it('returns a new state with x and y changed', () => {
+      expect(dist(myState)(translate(10)(myState))).toEqual(10);
     });
   });
   describe('setX', () => {
