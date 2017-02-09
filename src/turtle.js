@@ -4,11 +4,14 @@ import { commandString, fromString, nextString,setComm, successor, } from './sys
 import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
 import { copyS, getDir, getX, getY, rotate, setDir,setX, setY, state, translate, } from './state';
 
-const { cos, sin, pow, sqrt, } = Math;
+const { cos, sin, pow, sqrt,fround, } = Math;
 
 export const left = v => rotate(getDelta(v));
 export const right = v => rotate(-1 * getDelta(v));
 export const forward = v => translate(getMag(v));
+
+export const xDiff = s0 => s1 => getX(copyS(s1)) - getX(copyS(s0));
+export const yDiff = s0 => s1 => getY(copyS(s1)) - getY(copyS(s0));
 
 export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 
@@ -24,9 +27,6 @@ export const interpretString = sys => str => v =>
 export const stringStates = sys => str => v => s =>
 getStates(s)(...sysVector(sys)(str)(v));
 export const interpret = sys => term => v => s => command(sys)(term)(v)(copyS(s));
-
-export const xDiff = s0 => s1 => getX(copyS(s1)) - getX(copyS(s0));
-export const yDiff = s0 => s1 => getY(copyS(s1)) - getY(copyS(s0));
 
 export const dist = s0 => s1 => (sqrt(pow(xDiff(s0)(s1), 2) + pow(xDiff(s0)(s1), 2)));
 export const span = sys => str => v => s => (dist(s)(interpretString(sys)(str)(v)(s)));

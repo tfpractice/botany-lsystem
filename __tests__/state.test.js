@@ -1,9 +1,9 @@
 import 'jasmine-expect';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX,
-  transY, xFact, yFact, } from 'src/state';
+  transY, xDiff, xFact, yDiff, yFact, } from 'src/state';
 
-const myX = 1;
-const myY = 2;
+const myX = 1.0;
+const myY = 2.0;
 const myDir = Math.PI / 2;
 const myState = state(myX, myY, myDir);
 
@@ -26,6 +26,21 @@ describe('state', () => {
   describe('getDir', () => {
     it('returns the x-value of a turtle state', () => {
       expect(getDir(myState)).toEqual(myDir);
+    });
+  });
+  describe('xDiff', () => {
+    it('reutns the x prop difference of two states', () => {
+      console.log(myState);
+      console.log((transX(3)(myState)));
+
+      console.log(Math.fround(xDiff(myState)(transX(3)(myState))).toPrecision(3));
+      console.log(3 * xFact(myState));
+      expect(xDiff(myState)(transX(3)(myState))).toBeNumber();
+    });
+  });
+  describe('yDiff', () => {
+    it('reutns the y prop difference of two states', () => {
+      expect(yDiff(myState)(transY(3)(myState))).toEqual((3 * yFact(myState)));
     });
   });
   describe('setX', () => {

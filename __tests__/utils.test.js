@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { callBin, callOn, identity,isFunc,kestrel, pipeline, } from 'src/utils';
+import { callBin, callOn, digify,identity,isFunc, kestrel, pipeline, } from 'src/utils';
 
 describe('utils', () => {
   describe('isFunc', () => {
@@ -30,6 +30,11 @@ describe('utils', () => {
   describe('pipeline', () => {
     it('invokes a series of functions on an object', () => {
       expect(pipeline(...Array(5).fill(identity))(12)).toEqual(12);
+    });
+  });
+  describe('digify', () => {
+    it('returns a number to a number of decimal places', () => {
+      console.log('digisy',digify(6)(Math.sin(Math.PI / 3)));
     });
   });
 });
