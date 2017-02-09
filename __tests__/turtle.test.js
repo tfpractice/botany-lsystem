@@ -68,11 +68,7 @@ describe('turtle', () => {
       expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();
     });
   });
-  describe('dist', () => {
-    it('returns a new state with x and y changed', () => {
-      expect(dist(myState)(interpetComms(state())(...myComms))).toBeNumber();
-    });
-  });
+
   describe('span', () => {
     it('returns a new state with x and y changed', () => {
       expect((span(koch)(myString)(myVector)(myState))).toBeNumber();
