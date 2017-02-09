@@ -1,8 +1,13 @@
-export const getMag = ({ mag, } = { mag: 0, }) => mag;
-export const getDelta = ({ delta, } = { delta: 0, }) => delta;
+const def = { x: 0, y: 0, dir: 0, };
 
-export const setMag = (mag = 1) => v => ({ mag, delta: getDelta(v), });
-export const setDelta = (delta = 0) => v => ({ mag: getMag(v), delta, });
+export const state = (x = 0, y = 0, dir = 0) => ({ x, y, dir, });
 
-export const vector = (mag = 1, delta = 0) => ({ mag, delta, });
-export const copyV = v => vector(getMag(v), getDelta(v));
+export const getX = ({ x, } = def) => x;
+export const getY = ({ y, } = def) => y;
+export const getDir = ({ dir, } = def) => dir;
+
+export const setX = (x = 0) => s => state(x, getDir(s), getDir(s));
+export const setY = (y = 0) => s => state(getX(s), y, getDir(s));
+export const setDir = (dir = 0) => s => state(getX(s), getY(s), dir);
+
+export const copyS = s => state(getX(s), getY(s), getDir(s));
