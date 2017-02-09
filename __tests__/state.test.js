@@ -1,6 +1,6 @@
 import 'jasmine-expect';
-import { copyS, getDir, getX, getY, setDir,setX,setY, state, transX, transY,xFact
-,yFact, } from 'src/state';
+import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX,
+  transY, xFact, yFact, } from 'src/state';
 
 const myX = 1;
 const myY = 2;
@@ -66,6 +66,12 @@ describe('state', () => {
   describe('transY', () => {
     it('translates the y-value of a turtle stateby a certain magnitude', () => {
       expect(getY(transY(10)(myState))).toEqual(myY + (10 * yFact(myState)));
+    });
+  });
+  describe('translate', () => {
+    it('returns a new object with modified x and y properties', () => {
+      expect(getX(translate(10)(myState))).toEqual(myX + (10 * xFact(myState)));
+      expect(getY(translate(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });
   });
 });

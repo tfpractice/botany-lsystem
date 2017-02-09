@@ -17,5 +17,6 @@ export const xFact = s => cos(getDir(s));
 export const yFact = s => sin(getDir(s));
 export const transX = (mag = 0) => s => setX(getX(s) + (mag * xFact(s)))(s);
 export const transY = (mag = 0) => s => setY(getY(s) + (mag * yFact(s)))(s);
-export const translate = (mag = 0) => pipeline(...[ transX(m), transY(m), ]);
+export const translate = (mag = 0) => pipeline(transX(mag), transY(mag));
+
 export const copyS = s => state(getX(s), getY(s), getDir(s));
