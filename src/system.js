@@ -7,10 +7,6 @@ export const split = (str = '') => trimWhite(str).split('');
 export const segChars = str => split(str).filter(xhas(angleChars));
 export const segCount = str => segChars(str).length;
 
-// export const succSpan = sys => k => v => span(sys)(successor(sys)(k))(v)(state());
-
-// span(state())(commandString(successor(sys)(k)))
-
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;
 export const command = sys => term => get(get(sys)(term))('command') || kestrel(identity);
@@ -39,5 +35,3 @@ export const genNextDepth = sys => str => (d = 1) =>
   pipeline(...Array(d).fill(nextString(sys)))(str);
 
 export const commandString = sys => str => split(str).map(command(sys));
-
-// export const segments = str=>

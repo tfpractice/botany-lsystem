@@ -1,8 +1,8 @@
 import 'jasmine-expect';
-
-import { applyVector, dist, forward, getStates, getStatesBin,
-    interpetComms, interpret, interpretString, left, right, setDelta,
+import { forward, getStates, getStatesBin, interpret, interpretString, left, right, setDelta,
    setForward, span, stringStates, succSpan,sysVector, } from 'src/turtle';
+
+  //  interpetComms,applyVector,dist
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
@@ -49,7 +49,8 @@ describe('turtle', () => {
     it('returns a new state with x and y changed', () => {
       expect(getStates(myState)(...sysVector(koch)(myString)(myVector))).toBeArray();
     });
-  }); describe('sysVector', () => {
+  });
+  describe('sysVector', () => {
     it('applies a vector to each ohe systems commands', () => {
       expect(sysVector(koch)(myString)(myVector)).toBeArray();
     });
@@ -58,11 +59,12 @@ describe('turtle', () => {
       expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
     });
   });
-  describe('interpetComms', () => {
-    it('calls multiple commands on the state', () => {
-      expect(interpetComms(myState)(...myComms)).toBeObject();
-    });
-  });
+
+  // describe('interpetComms', () => {
+  //   it('calls multiple commands on the state', () => {
+  //     expect(interpetComms(myState)(...myComms)).toBeObject();
+  //   });
+  // });
   describe('interpretString', () => {
     it('returns a new state with x and y changed', () => {
       expect(interpretString(koch)(myString)(myVector)(myState)).toBeObject();

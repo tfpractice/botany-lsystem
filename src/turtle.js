@@ -10,8 +10,9 @@ export const forward = v => translate(getMag(v));
 
 export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 
-export const applyVector = v => fn => callOn(copyV(v))(fn);
-export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
+export const getStatesBin = (s, com) => s.concat(com(copyS(lastV(s))));
+
+// export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 
 export const sysVector = sys => str => v => commandString(sys)(str).map(callOn(v));
