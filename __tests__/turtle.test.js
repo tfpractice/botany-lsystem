@@ -17,11 +17,6 @@ const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
 
 describe('turtle', () => {
-  // describe('rotate', () => {
-  //   it('returns a new state with direction changed', () => {
-  //     expect(getDir(rotate(myVector)(myState))).toEqual(Math.PI);
-  //   });
-  // });
   describe('right', () => {
     it('returns a new state with direction changed', () => {
       expect(getDir(right(myVector)(myState))).toEqual(0);

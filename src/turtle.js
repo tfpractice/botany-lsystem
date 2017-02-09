@@ -2,16 +2,13 @@ import { lastV, } from 'fenugreek-collections';
 import { callBin, callOn, pipeline, } from './utils';
 import { commandString, fromString, nextString,setComm, successor, } from './system';
 import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
-import { copyS, getDir, getX, getY, rotate, setDir, setX, setY, state, } from './state';
+import { copyS, getDir, getX, getY, rotate, setDir,setX, setY, state, translate, } from './state';
 
 const { cos, sin, pow, sqrt, } = Math;
 
-export const transX = v => s => getX(s) + (getMag(v) * cos(getDir(s)));
-export const transY = v => s => getY(s) + (getMag(v) * sin(getDir(s)));
-
 export const left = v => rotate(getDelta(v));
 export const right = v => rotate(-1 * getDelta(v));
-export const forward = v => s => state(transX(v)(s), transY(v)(s), getDir(s));
+export const forward = v => translate(getMag(v));
 
 export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 
