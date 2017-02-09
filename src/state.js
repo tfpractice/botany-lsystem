@@ -1,6 +1,6 @@
 import { callBin, digify, pipeline, } from './utils';
 
-const { cos, sin, pow, sqrt, fround, } = Math;
+const { cos, sin, pow, sqrt, hypot, } = Math;
 const def = () => ({ x: 0, y: 0, dir: 0, });
 
 export const state = (x = 0, y = 0, dir = 0) => ({ x, y, dir, });
@@ -11,8 +11,9 @@ export const getDir = ({ dir, } = def()) => dir;
 
 export const copyS = s => state(getX(s), getY(s), getDir(s));
 
-export const xDiff = s0 => s1 => (getX(copyS(s1)) - getX(copyS(s0)));
-export const yDiff = s0 => s1 => (getY(copyS(s1)) - getY(copyS(s0)));
+export const xDiff = s0 => s1 => getX(copyS(s1)) - getX(copyS(s0));
+export const yDiff = s0 => s1 => getY(copyS(s1)) - getY(copyS(s0));
+export const dist = s0 => s1 => (sqrt(pow(xDiff(s0)(s1), 2) + pow(xDiff(s0)(s1), 2)));
 
 export const setX = (x = 0) => s => state(x, getY(s), getDir(s));
 export const setY = (y = 0) => s => state(getX(s), y, getDir(s));
