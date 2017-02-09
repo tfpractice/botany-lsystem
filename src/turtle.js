@@ -17,7 +17,7 @@ export const left = v => s => state(getX(s), getY(s), getDir(s) + getDelta(v));
 export const right = v => s => state(getX(s), getY(s), getDir(s) - getDelta(v));
 export const forward = v => s => state(transX(v)(s), transY(v)(s), getDir(s));
 
-export const interpetComms = s => pipeline(copyS(s));
+export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 
 export const applyVector = v => fn => callOn(copyV(v))(fn);
 export const scaleVector = v => factor => v * factor;
@@ -25,8 +25,8 @@ export const getStatesBin = (states, com) => states.concat(com(lastV(states)));
 export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
 
 export const sysVector = sys => str => v => commandString(sys)(str).map(callOn(v));
-export const interpretString = sys => str => v => s =>
- pipeline(copyS(s))(...(commandString(sys)(str).map(callOn(copyV(v)))));
+export const interpretString = sys => str => v =>
+ pipeline(...(commandString(sys)(str).map(callOn(copyV(v)))));
  
 export const stringStates = sys => str => v => s =>
 getStates(s)(...sysVector(sys)(str)(v));

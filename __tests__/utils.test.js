@@ -29,7 +29,7 @@ describe('utils', () => {
   });
   describe('pipeline', () => {
     it('invokes a series of functions on an object', () => {
-      expect(pipeline(12)(...Array(5).fill(identity))).toEqual(12);
+      expect(pipeline(...Array(5).fill(identity))(12)).toEqual(12);
     });
   });
 });

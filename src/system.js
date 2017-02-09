@@ -36,7 +36,7 @@ export const fromString = str => addTerms(system())(...split(str));
 export const nextString = sys => str => split(str).map(successor(sys)).join('');
 export const genNextBin = (str, fn) => callOn(str)(fn);
 export const genNextDepth = sys => str => (d = 1) =>
-  pipeline(str)(...Array(d).fill(nextString(sys)));
+  pipeline(...Array(d).fill(nextString(sys)))(str);
 
 export const commandString = sys => str => split(str).map(command(sys));
 
