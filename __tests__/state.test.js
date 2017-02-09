@@ -1,5 +1,6 @@
 import 'jasmine-expect';
-import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
+import { copyS, getDir, getX, getY, setDir,setX,setY, state, transX, transY,xFact
+,yFact, } from 'src/state';
 
 const myX = 1;
 const myY = 2;
@@ -45,6 +46,26 @@ describe('state', () => {
   describe('copyS', () => {
     it('ensures that an object returns a valid state', () => {
       expect(copyS()).toBeObject();
+    });
+  });
+  describe('xFact', () => {
+    it('returns the cosine of the dir prop', () => {
+      expect(xFact(myState)).toEqual(Math.cos(myDir));
+    });
+  });
+  describe('yFact', () => {
+    it('returns the sine of the dir prop', () => {
+      expect(yFact(myState)).toEqual(Math.sin(myDir));
+    });
+  });
+  describe('transX', () => {
+    it('translates the x-value of a turtle state by a certain magnitude', () => {
+      expect(getX(transX(10)(myState))).toEqual(myX + (10 * xFact(myState)));
+    });
+  });
+  describe('transY', () => {
+    it('translates the y-value of a turtle stateby a certain magnitude', () => {
+      expect(getY(transY(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });
   });
 });
