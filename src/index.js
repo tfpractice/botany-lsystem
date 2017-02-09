@@ -1,3 +1,5 @@
 import * as Turtle from './turtle';
 import * as DOL from './system';
-export { DOL, Turtle, };
+import * as State from './state';
+import * as Vector from './vector';
+export { DOL, State, Turtle, Vector, };

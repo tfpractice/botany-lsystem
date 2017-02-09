@@ -5,8 +5,6 @@ import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX
 const myX = 1;
 const myY = 2;
 const myDir = Math.PI / 2;
-
-console.log(Math.sin(myDir));
 const myState = state(myX, myY, myDir);
 
 describe('state', () => {
