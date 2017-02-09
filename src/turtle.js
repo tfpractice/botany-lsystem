@@ -4,6 +4,8 @@ import { commandString, fromString, nextString,setComm, successor, } from './sys
 import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from './state';
 
+// import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX,
+  // transY, xFact, yFact, } from 'src/state';
 const { cos, sin, pow, sqrt, } = Math;
 
 export const transX = v => s => getX(s) + (getMag(v) * cos(getDir(s)));

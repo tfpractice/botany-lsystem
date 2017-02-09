@@ -2,7 +2,7 @@ import 'jasmine-expect';
 
 import { applyVector, dist, forward, getStates, getStatesBin,
     interpetComms, interpret, interpretString, left, right, rotate, setDelta,
-   setForward, span, stringStates, succSpan,sysVector,transX, transY, } from 'src/turtle';
+   setForward, span, stringStates, succSpan,sysVector, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
@@ -17,11 +17,11 @@ const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
 
 describe('turtle', () => {
-  describe('rotate', () => {
-    it('returns a new state with direction changed', () => {
-      expect(getDir(rotate(myVector)(myState))).toEqual(Math.PI);
-    });
-  });
+  // describe('rotate', () => {
+  //   it('returns a new state with direction changed', () => {
+  //     expect(getDir(rotate(myVector)(myState))).toEqual(Math.PI);
+  //   });
+  // });
   describe('right', () => {
     it('returns a new state with direction changed', () => {
       expect(getDir(right(myVector)(myState))).toEqual(0);
@@ -32,16 +32,17 @@ describe('turtle', () => {
       expect(getDir(left(myVector)(myState))).toEqual(Math.PI);
     });
   });
-  describe('transX', () => {
-    it('translates the x-value of a turtle state', () => {
-      expect(Math.round(transX(myVector)(myState))).toEqual(1);
-    });
-  });
-  describe('transY', () => {
-    it('translates the y-value of a turtle state', () => {
-      expect(transY(myVector)(myState)).toEqual(5);
-    });
-  });
+
+  // describe('transX', () => {
+  //   it('translates the x-value of a turtle state', () => {
+  //     expect(Math.round(transX(myVector)(myState))).toEqual(1);
+  //   });
+  // });
+  // describe('transY', () => {
+  //   it('translates the y-value of a turtle state', () => {
+  //     expect(transY(myVector)(myState)).toEqual(5);
+  //   });
+  // });
   describe('forward', () => {
     it('returns a new state with x and y changed', () => {
       expect(getDir(forward(myVector)(myState))).toEqual(Math.PI / 2);

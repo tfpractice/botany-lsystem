@@ -65,11 +65,21 @@ describe('state', () => {
   });
   describe('transY', () => {
     it('translates the y-value of a turtle stateby a certain magnitude', () => {
+      console.log(getY(transY(10)(myState)));
       expect(getY(transY(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });
   });
   describe('translate', () => {
     it('returns a new object with modified x and y properties', () => {
+      console.log(myState);
+      console.log((transX(10)(myState)));
+      console.log((transY(10)(myState)));
+      console.log(getX(translate(10)(myState)));
+      console.log(getY(translate(10)(myState)));
+      console.log((translate(10)(myState)));
+      console.log(myState);
+      
+      console.log(myY + (10 * Math.sin(myDir)));
       expect(getX(translate(10)(myState))).toEqual(myX + (10 * xFact(myState)));
       expect(getY(translate(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });

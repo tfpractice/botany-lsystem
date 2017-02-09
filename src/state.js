@@ -1,4 +1,4 @@
-import { pipeline, } from './utils';
+import { callBin, pipeline, } from './utils';
 const { cos, sin, pow, sqrt, } = Math;
 const def = { x: 0, y: 0, dir: 0, };
 
@@ -15,8 +15,10 @@ export const rotate = (del = 0) => s => setDir(del + getDir(s))(s);
 
 export const xFact = s => cos(getDir(s));
 export const yFact = s => sin(getDir(s));
-export const transX = (mag = 0) => s => setX(getX(s) + (mag * xFact(s)))(s);
-export const transY = (mag = 0) => s => setY(getY(s) + (mag * yFact(s)))(s);
-export const translate = (mag = 0) => pipeline(transX(mag), transY(mag));
+export const transX = (mag = 0) => s => setX(getX(s) + (xFact(s) * mag))(s);
+export const transY = (mag = 0) => s => setY(getY(s) + (yFact(s) * mag))(s);
+export const translate = (mag = 0) => s => [ transX(mag), transY(mag), ].reduce(callBin,s);
+
+// pipeline(transX(mag), transY(mag))(s);
 
 export const copyS = s => state(getX(s), getY(s), getDir(s));
