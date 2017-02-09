@@ -27,7 +27,22 @@ describe('state', () => {
       expect(getDir(myState)).toEqual(Math.PI / 2);
     });
   });
-  describe('copu', () => {
+  describe('setX', () => {
+    it('returns a new state with a modified x prop', () => {
+      expect(getX(setX(9)(myState))).toEqual(9);
+    });
+  });
+  describe('setY', () => {
+    it('returns a new state with a modified y prop', () => {
+      expect(getY(setY(100)(myState))).toEqual(100);
+    });
+  });
+  describe('setDir', () => {
+    it('returns a new state with a modified dir prop', () => {
+      expect(getDir(setDir(Math.PI / 4)(myState))).toEqual(Math.PI / 4);
+    });
+  });
+  describe('copyS', () => {
     it('ensures that an object returns a valid state', () => {
       expect(copyS()).toBeObject();
     });
