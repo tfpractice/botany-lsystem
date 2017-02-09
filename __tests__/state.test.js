@@ -5,6 +5,8 @@ import { copyS, getDir, getX, getY, setDir, setX, setY, state, translate, transX
 const myX = 1;
 const myY = 2;
 const myDir = Math.PI / 2;
+
+console.log(Math.sin(myDir));
 const myState = state(myX, myY, myDir);
 
 describe('state', () => {
@@ -25,7 +27,7 @@ describe('state', () => {
   });
   describe('getDir', () => {
     it('returns the x-value of a turtle state', () => {
-      expect(getDir(myState)).toEqual(Math.PI / 2);
+      expect(getDir(myState)).toEqual(myDir);
     });
   });
   describe('setX', () => {
@@ -65,21 +67,11 @@ describe('state', () => {
   });
   describe('transY', () => {
     it('translates the y-value of a turtle stateby a certain magnitude', () => {
-      console.log(getY(transY(10)(myState)));
       expect(getY(transY(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });
   });
   describe('translate', () => {
     it('returns a new object with modified x and y properties', () => {
-      console.log(myState);
-      console.log((transX(10)(myState)));
-      console.log((transY(10)(myState)));
-      console.log(getX(translate(10)(myState)));
-      console.log(getY(translate(10)(myState)));
-      console.log((translate(10)(myState)));
-      console.log(myState);
-      
-      console.log(myY + (10 * Math.sin(myDir)));
       expect(getX(translate(10)(myState))).toEqual(myX + (10 * xFact(myState)));
       expect(getY(translate(10)(myState))).toEqual(myY + (10 * yFact(myState)));
     });
