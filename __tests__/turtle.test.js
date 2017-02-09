@@ -1,7 +1,7 @@
 import 'jasmine-expect';
 
 import { applyVector, dist, forward, getStates, getStatesBin,
-    interpetComms, interpret, interpretString, left, right, rotate, setDelta,
+    interpetComms, interpret, interpretString, left, right, setDelta,
    setForward, span, stringStates, succSpan,sysVector, } from 'src/turtle';
 import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
