@@ -14,8 +14,10 @@ export const entry = (next = '', fn = defComm) =>
   new Map().set('next', next).set('command', fn,);
 
 export const term = (chr, n = chr, fn = defComm) => addMap()(chr)(entry(n, fn));
-export const getNext = tMap => get(tMap)('next');
-export const getCommand = tMap => get(tMap)('command');
+export const next = eMap => get(eMap)('next');
+export const command = eMap => get(eMap)('command');
   
-export const setNext = tMap => (s = defNext(tMap)) => addMap(tMap)('next')(s);
-export const setCommand = tMap => (fn = defComm) => addMap(tMap)('command')(fn);
+export const setNext = eMap => (s = defNext(eMap)) => addMap(eMap)('next')(s);
+export const setCommand = eMap => (fn = defComm) => addMap(eMap)('command')(fn);
+
+// export const copyTerm = tMap = t => term(t, next(get(tMap)(t)), command(tMap)(t));

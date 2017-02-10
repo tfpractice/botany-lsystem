@@ -1,14 +1,17 @@
 import { addMap, asMap, get, has, xhas, } from 'fenugreek-collections';
 import { callOn, identity, kestrel, pipeline, } from './utils';
-import { angleChars, entry, segChars, segCount, split, trimWhite, } from './text';
+import { angleChars, command as eComm, next as eNext, entry, segChars, segCount,
+split, term, trimWhite, } from './text';
 
 const defComm = kestrel(identity);
 
 export const system = sys => asMap(sys);
 
 export const getTerm = sys => chr => asMap(get(sys)(chr));
-export const next = sys => chr => get(get(sys)(chr))('next') || chr;
-export const command = sys => chr => get(get(sys)(chr))('command') || defComm;
+export const next = sys => chr => eNext(get(sys)(chr)) || chr;
+export const command = sys => chr => eComm(get(sys)(chr)) || defComm;
+
+export const copyTerm = sys => t => term(t, next(sys)(t), command(sys)(t));
 
 export const setNext = sys => chr => next =>
   addMap(sys)(chr)(addMap(get(sys)(chr))('next')(next));
@@ -37,3 +40,11 @@ export const genNextDepth = sys => str => (d = 1) =>
 
 export const getCommands = sys => str => split(str).map(command(sys));
 export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(v));
+
+export const importTermBin = (sys, [ chr, cMap, ]) => addMap(sys)(chr)(cMap);
+
+// export const
+export const mergeSystemsBin = (sys, alts) =>
+spread(asMap(alts)).reduce(importTermBin, asMap(sys));
+
+export const mergeSystems = sys => (...alts) => alts.reduce(mergeSystemsBin, asMap(sys));

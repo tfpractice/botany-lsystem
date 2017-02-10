@@ -1,10 +1,16 @@
 import 'jasmine-expect';
 import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
-   getCommands, getTerm, next,nextSize, nextString, setComm,setCommBin,
-   setNext, setNextBin, system, } from 'src/system';
+   getCommands, getTerm, importTermBin,mergeSystemsBin, next, nextSize,nextString,
+   setComm, setCommBin, setNext, setNextBin, system, } from 'src/system';
+import { entry, term, } from 'src/text';
 import { forward, left, right, } from 'src/turtle';
 
+// const myF = term('F');
 const myString = 'F-F+F+FF-F-F+F';
+const myF = term('F', myString, forward);
+const myL = term('+', '+', left);
+const myR = term('-', '-', right);
+
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setNext(fromString(myString))('F')(myString));
 
@@ -95,6 +101,18 @@ describe('system', () => {
   describe('genNextDepth', () => {
     it('returns a new system with entries from the split string', () => {
       expect(genNextDepth(koch)(myString)(2)).toBeString();
+    });
+  });
+  describe('importTermBin', () => {
+    it('takes a key and an entryMap', () => {
+      console.log(entry(myString, forward));
+      console.log(importTermBin(system(), [ 'F', entry(myString, forward), ]));
+      expect(importTermBin(system(new Map()), [ 'F', entry(myString, forward), ]) instanceof Map).toBeTrue(value);
+    });
+  });
+  describe('mergeSystemsBin', () => {
+    it('merges two systems', () => {
+      
     });
   });
 });

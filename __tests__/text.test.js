@@ -1,6 +1,6 @@
 import 'jasmine-expect';
 
-import { angleChars, entry, getCommand, getNext, segChars, segCount, setCommand,
+import { angleChars, command, entry, next, segChars, segCount, setCommand,
    setNext, split, term, trimWhite, } from 'src/text';
 const myString = 'F-F+F+FF-F-F+F';
 
@@ -35,25 +35,25 @@ describe('text', () => {
       expect(term('a','abc', a => `${a}${a}`) instanceof Map).toBeTrue();
     });
   });
-  describe('getNext', () => {
+  describe('next', () => {
     it('returns the maps next value', () => {
-      expect(getNext(entry('abc', (a => `${a}${a}`)))).toBe('abc');
+      expect(next(entry('abc', (a => `${a}${a}`)))).toBe('abc');
     });
   });
   describe('getComm', () => {
     it('returns the maps command value', () => {
-      expect(getCommand(entry('abc', (a => `${a}${a}`)))).toBeFunction();
-      expect(getCommand(entry('abc', (a => `${a}${a}`)))('q')).toBe('qq');
+      expect(command(entry('abc', (a => `${a}${a}`)))).toBeFunction();
+      expect(command(entry('abc', (a => `${a}${a}`)))('q')).toBe('qq');
     });
   });
   describe('setNext', () => {
     it('sets the next', () => {
-      expect(getNext(setNext(entry('abc', (a => `${a}${a}`)))('cba'))).toBe('cba');
+      expect(next(setNext(entry('abc', (a => `${a}${a}`)))('cba'))).toBe('cba');
     });
   });
   describe('setCommand', () => {
     it('sets the next', () => {
-      expect(getCommand(setCommand(entry('abc', a => `${a}${a}`))(a => `${a}${a}${a}`))('q')).toBe('qqq');
+      expect(command(setCommand(entry('abc', a => `${a}${a}`))(a => `${a}${a}${a}`))('q')).toBe('qqq');
     });
   });
 });
