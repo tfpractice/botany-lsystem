@@ -1,8 +1,7 @@
 import 'jasmine-expect';
 import { forward, getStates, interpret, left, right, setVector, span,succSpan, } from 'src/turtle';
-import { addTermBin, addTerms, command, fromString, getCommands, nextString, setComm, setCommBin,
-      setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
-import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
+import { command, fromString,setCommBin, setSucc, } from 'src/system';
+import { getDir, state, } from 'src/state';
 
 import { vector, } from 'src/vector';
 const myState = state(1, 2, Math.PI / 2);
