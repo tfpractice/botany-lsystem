@@ -1,8 +1,7 @@
-import { lastV, } from 'fenugreek-collections';
 import { callOn, pipeline, spreadPipe, } from './utils';
-import { fromString, getCommands, next, } from './system';
+import { getCommands, next, } from './system';
 import { copyV, getDelta, getMag, } from './vector';
-import { copyS, dist, rotate, setDir, setX, setY, state, translate, } from './state';
+import { dist, rotate, state, translate, } from './state';
 
 export const left = v => rotate(getDelta(v));
 export const right = v => rotate(-1 * getDelta(v));
