@@ -1,5 +1,5 @@
 import { lastV, } from 'fenugreek-collections';
-import { callBin, callOn, pipeline, } from './utils';
+import { callBin, callOn, pipeline, spreadPipe, } from './utils';
 import { commandString, fromString, nextString,setComm, successor, } from './system';
 import { copyV, getDelta, getMag, setDelta, setMag, vector, } from './vector';
 import { copyS, dist, getDir, getX, getY, rotate,setDir, setX, setY, state,translate, } from './state';
@@ -9,16 +9,12 @@ export const right = v => rotate(-1 * getDelta(v));
 export const forward = v => translate(getMag(v));
 
 export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
+export const getStates = (...comms) => spreadPipe(...comms);
 
-export const getStatesBin = (s, com) => s.concat(com(copyS(lastV(s))));
-
-// export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
-export const getStates = s => (...comms) => comms.reduce(getStatesBin, [ s, ]);
-
-export const sysVector = sys => str => v => commandString(sys)(str).map(callOn(v));
+export const setVector = sys => str => v => commandString(sys)(str).map(callOn(v));
 export const interpretString = sys => str => v => pipeline(...(commandString(sys)(str).map(callOn(copyV(v)))));
  
-export const stringStates = sys => str => v => s => getStates(s)(...sysVector(sys)(str)(v));
+export const stringStates = sys => str => v => getStates(...setVector(sys)(str)(v));
 export const interpret = sys => term => v => s => command(sys)(term)(v)(copyS(s));
 
 export const span = sys => str => v => s => (dist(s)(interpretString(sys)(str)(v)(s)));
