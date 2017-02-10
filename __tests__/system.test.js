@@ -1,11 +1,8 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, fromString, genNextBin,
-  genNextDepth, getCommands, nextString, setComm,
-  setCommBin, setSucc,setSuccBin, successor, succSize, system, }
-  from 'src/system';
+import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
+   getCommands, getTerm, nextString,setComm, setCommBin, setSucc,setSuccBin,
+   successor, succSize, system, } from 'src/system';
 import { forward, left, right, } from 'src/turtle';
-
-// import { segChars, segCount, split, trimWhite, } from 'src/text';
 
 const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
@@ -23,6 +20,11 @@ describe('system', () => {
     });
     it('defaults to the identity function', () => {
       expect(command(system())('a')()(12)).toEqual(12);
+    });
+  });
+  describe('getTerm', () => {
+    it('returns a map with a command and succ keys', () => {
+      expect(getTerm(koch)('b') instanceof Map).toBeTruthy();
     });
   });
 

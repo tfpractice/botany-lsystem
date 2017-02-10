@@ -2,10 +2,13 @@ import { addMap, asMap, get, has, xhas, } from 'fenugreek-collections';
 import { callOn, identity, kestrel, pipeline, } from './utils';
 import { angleChars, segChars, segCount, split, trimWhite, } from './text';
 
+const defComm = kestrel(identity);
+
 export const system = sys => asMap(sys);
 
+export const getTerm = sys => chr => asMap(get(sys)(chr));
 export const successor = sys => chr => get(get(sys)(chr))('succ') || chr;
-export const command = sys => chr => get(get(sys)(chr))('command') || kestrel(identity);
+export const command = sys => chr => get(get(sys)(chr))('command') || defComm;
 
 export const setSucc = sys => chr => succ =>
   addMap(sys)(chr)(addMap(get(sys)(chr))('succ')(succ));
@@ -33,3 +36,4 @@ export const genNextDepth = sys => str => (d = 1) =>
   pipeline(...Array(d).fill(nextString(sys)))(str);
 
 export const getCommands = sys => str => split(str).map(command(sys));
+export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(v));
