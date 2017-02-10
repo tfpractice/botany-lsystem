@@ -1,12 +1,12 @@
 import 'jasmine-expect';
 import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
-   getCommands, getTerm, nextString,setComm, setCommBin, setSucc,setSuccBin,
-   successor, succSize, system, } from 'src/system';
+   getCommands, getTerm, next,nextSize, nextString, setComm,setCommBin,
+   setNext, setNextBin, system, } from 'src/system';
 import { forward, left, right, } from 'src/turtle';
 
 const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
-.reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
+.reduce(setCommBin, setNext(fromString(myString))('F')(myString));
 
 describe('system', () => {
   describe('system', () => {
@@ -14,9 +14,9 @@ describe('system', () => {
       expect(system() instanceof Map).toBeTrue();
     });
   });
-  describe('successor', () => {
-    it('retrieves the successor string of a system key', () => {
-      expect(successor(system())('a')).toEqual('a');
+  describe('next', () => {
+    it('retrieves the next string of a system key', () => {
+      expect(next(system())('a')).toEqual('a');
     });
     it('defaults to the identity function', () => {
       expect(command(system())('a')()(12)).toEqual(12);
@@ -33,25 +33,25 @@ describe('system', () => {
       expect(command(system())('a')).toBeFunction();
     });
     it('defaults to the key', () => {
-      expect(successor(system())('a')).toEqual('a');
+      expect(next(system())('a')).toEqual('a');
     });
   });
-  describe('setSucc', () => {
+  describe('setNext', () => {
     it('returns the x-value of a turtle state', () => {
-      expect(successor(setSucc(system())('a')('b'))('a')).toBe('b');
+      expect(next(setNext(system())('a')('b'))('a')).toBe('b');
     });
-  }); describe('succSize', () => {
+  }); describe('nextSize', () => {
     it('returns the x-value of a turtle state', () => {
-      expect(succSize(koch)('F')).toBe(8);
+      expect(nextSize(koch)('F')).toBe(8);
     });
   });
   describe('setComm', () => {
     it('returns a new state with direction changed', () => {
       expect(command(setComm(system())('a')(x => x))('a')).toBeFunction();
     });
-  }); describe('setSuccBin', () => {
+  }); describe('setNextBin', () => {
     it('returns the x-value of a turtle state', () => {
-      expect(successor(setSuccBin(system(), [ 'a', 'b', ]))('a')).toBe('b');
+      expect(next(setNextBin(system(), [ 'a', 'b', ]))('a')).toBe('b');
     });
   });
   describe('setCommBin', () => {
@@ -61,7 +61,7 @@ describe('system', () => {
   });
   describe('addTermBin', () => {
     it('adds a term to a system', () => {
-      expect(successor(addTermBin(system(), 'a'))('a')).toBe('a');
+      expect(next(addTermBin(system(), 'a'))('a')).toBe('a');
       expect(command(addTermBin(system(), 'a'))('a')()(12)).toBe(12);
     });
   });
