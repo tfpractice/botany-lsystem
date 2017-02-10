@@ -16,8 +16,8 @@ export const setNext = sys => chr => next =>
 export const setComm = sys => chr => comm =>
   addMap(sys)(chr)(entry(next(sys)(chr), comm));
 
-export const setCommBin = (sys, [chr, comm,]) => setComm(sys)(chr)(comm);
-export const setNextBin = (sys, [chr, succ,]) => setNext(sys)(chr)(succ);
+export const setCommBin = (sys, [ chr, comm, ]) => setComm(sys)(chr)(comm);
+export const setNextBin = (sys, [ chr, succ, ]) => setNext(sys)(chr)(succ);
 
 export const addTermBin = (sys, chr) => addMap(sys)(chr)(getTerm(sys, chr));
 export const addTerms = sys => (...chrs) => chrs.reduce(addTermBin, sys);
@@ -30,6 +30,6 @@ export const nextSize = sys => chr => segCount(next(sys)(chr));
 export const getCommands = sys => str => split(str).map(command(sys));
 export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(v));
 
-export const importBin = (sys, [chr, cMap,]) => addMap(sys)(chr)(cMap);
+export const importBin = (sys, [ chr, cMap, ]) => addMap(sys)(chr)(cMap);
 export const mergeTermsBin = (sys, alts) => spreadKV(alts).reduce(addBinMap, sys);
 export const mergeTerms = sys => (...alts) => alts.reduce(mergeTermsBin, sys);
