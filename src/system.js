@@ -2,32 +2,29 @@ import { addMap, asMap, get, has, xhas, } from 'fenugreek-collections';
 import { callOn, identity, kestrel, pipeline, } from './utils';
 import { angleChars, segChars, segCount, split, trimWhite, } from './text';
 
-// export const angleChars = new Set([ '+', '-', ]);
-// export const trimWhite = str => str.replace(/\s/g, '');
-// export const split = (str = '') => trimWhite(str).split('');
-// export const segChars = str => split(str).filter(xhas(angleChars));
-// export const segCount = str => segChars(str).length;
-
 export const system = sys => asMap(sys);
-export const successor = sys => term => get(get(sys)(term))('succ') || term;
-export const command = sys => term => get(get(sys)(term))('command') || kestrel(identity);
-export const succSize = sys => term => segCount(successor(sys)(term));
-export const setSucc = sys => term => succ =>
-  addMap(sys)(term)(addMap(get(sys)(term))('succ')(succ));
 
-export const setComm = sys => term => comm =>
-  addMap(sys)(term)(addMap(get(sys)(term))('command')(comm));
+export const successor = sys => chr => get(get(sys)(chr))('succ') || chr;
+export const command = sys => chr => get(get(sys)(chr))('command') || kestrel(identity);
 
-export const setCommBin = (sys, [ term, comm, ]) =>
-  addMap(sys)(term)(addMap(get(sys)(term))('command')(comm));
+export const setSucc = sys => chr => succ =>
+  addMap(sys)(chr)(addMap(get(sys)(chr))('succ')(succ));
 
-export const setSuccBin = (sys, [ term, succ, ]) =>
-  addMap(sys)(term)(addMap(get(sys)(term))('succ')(succ));
+export const setComm = sys => chr => comm =>
+  addMap(sys)(chr)(addMap(get(sys)(chr))('command')(comm));
 
-export const addTermBin = (sys, term) =>
-  setComm(setSucc(sys)(term)(successor(sys)(term)))(term)(command(sys)(term));
+export const setCommBin = (sys, [ chr, comm, ]) =>
+  addMap(sys)(chr)(addMap(get(sys)(chr))('command')(comm));
 
-export const addTerms = sys => (...terms) => terms.reduce(addTermBin, sys);
+export const setSuccBin = (sys, [ chr, succ, ]) =>
+  addMap(sys)(chr)(addMap(get(sys)(chr))('succ')(succ));
+
+export const addTermBin = (sys, chr) =>
+  setComm(setSucc(sys)(chr)(successor(sys)(chr)))(chr)(command(sys)(chr));
+
+export const addTerms = sys => (...chrs) => chrs.reduce(addTermBin, sys);
+
+export const succSize = sys => chr => segCount(successor(sys)(chr));
 
 export const fromString = str => addTerms(system())(...split(str));
 export const nextString = sys => str => split(str).map(successor(sys)).join('');
