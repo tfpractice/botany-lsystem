@@ -1,8 +1,7 @@
 import 'jasmine-expect';
 import { forward, getStates, interpret, interpretString, left, right,
     setVector, span, stringStates,succSpan, } from 'src/turtle';
-
-import { addTermBin, addTerms, command, commandString, fromString, nextString, setComm, setCommBin,
+import { addTermBin, addTerms, command, fromString, getCommands, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
 

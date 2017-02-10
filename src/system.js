@@ -34,4 +34,4 @@ export const genNextBin = (str, fn) => callOn(str)(fn);
 export const genNextDepth = sys => str => (d = 1) =>
   pipeline(...Array(d).fill(nextString(sys)))(str);
 
-export const commandString = sys => str => split(str).map(command(sys));
+export const getCommands = sys => str => split(str).map(command(sys));

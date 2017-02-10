@@ -1,6 +1,6 @@
 import { callBin, pipeline, } from './utils';
 
-const { cos, sin, pow, sqrt, hypot, } = Math;
+const { cos, sin, hypot, } = Math;
 const def = () => ({ x: 0, y: 0, dir: 0, });
 
 export const state = (x = 0, y = 0, dir = 0) => ({ x, y, dir, });

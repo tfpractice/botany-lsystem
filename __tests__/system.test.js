@@ -1,6 +1,6 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, angleChars, command, commandString, fromString,
-  genNextBin, genNextDepth, nextString, segChars, segCount, setComm,
+import { addTermBin, addTerms, angleChars, command, fromString, genNextBin,
+  genNextDepth, getCommands, nextString, segChars, segCount, setComm,
   setCommBin, setSucc,setSuccBin, split, successor, succSize, system, trimWhite, }
   from 'src/system';
 import { forward, left, right, } from 'src/turtle';
@@ -94,9 +94,9 @@ describe('system', () => {
       expect(nextString(fromString(myString))('FFF').length).toBe(3);
     });
   });
-  describe('commandString', () => {
+  describe('getCommands', () => {
     it('returns a new system with entries from the split string', () => {
-      expect(commandString(fromString(myString))(myString)).toBeArray();
+      expect(getCommands(fromString(myString))(myString)).toBeArray();
     });
   });
   describe('genNextBin', () => {
