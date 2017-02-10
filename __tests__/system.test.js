@@ -9,7 +9,7 @@ const myString = 'F-F+F+FF-F-F+F';
 const myF = term('F', myString, forward);
 const myL = term('+', '+', left);
 const myR = term('-', '-', right);
-const koch = mergeTerms(system())(myF, myL, myR);
+const koch = mergeTerms(myF, myL, myR);
 const myVector = { mag: 3, delta: Math.PI / 2, };
 
 describe('system', () => {
@@ -110,7 +110,7 @@ describe('system', () => {
   
   describe('mergeTerms', () => {
     it('merges multiple lsystems', () => {
-      expect(mergeTerms(system())(myF, myL, myR) instanceof Map).toBeTrue();
+      expect(mergeTerms(myF, myL, myR) instanceof Map).toBeTrue();
     });
   });
   describe('callCommands', () => {

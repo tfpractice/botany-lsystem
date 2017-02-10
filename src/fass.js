@@ -8,4 +8,4 @@ export const terms = [
   term('-', '-', right),
   term('+', '+', left),
 ];
-export const fass = () => mergeTerms()(...terms);
+export const fass = () => mergeTerms(...terms);
