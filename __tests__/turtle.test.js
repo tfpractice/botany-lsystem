@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { forward, getStates, interpret, left, right, setVector, span, stringStates,succSpan, } from 'src/turtle';
+import { forward, getStates, interpret, left, right, setVector, span,succSpan, } from 'src/turtle';
 import { addTermBin, addTerms, command, fromString, getCommands, nextString, setComm, setCommBin,
       setSucc, setSuccBin, split, successor, system, trimWhite, } from 'src/system';
 import { copyS, getDir, getX, getY, setDir, setX, setY, state, } from 'src/state';
@@ -47,11 +47,13 @@ describe('turtle', () => {
     it('applies a vector to each ohe systems commands', () => {
       expect(setVector(koch)(myString)(myVector)).toBeArray();
     });
-  }); describe('stringStates', () => {
-    it('returns a new state with x and y changed', () => {
-      expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
-    });
   });
+
+  // describe('stringStates', () => {
+  //   it('returns a new state with x and y changed', () => {
+  //     expect(stringStates(koch)(myString)(myVector)(myState)).toBeArray();
+  //   });
+  // });
 
   describe('interpret', () => {
     it('returns a new state with x and y changed', () => {
