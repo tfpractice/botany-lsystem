@@ -12,7 +12,7 @@ export const interpetComms = s => (...funcs) => pipeline(...funcs)(copyS(s));
 export const getStates = (...comms) => spreadPipe(...comms);
 
 export const setVector = sys => str => v => commandString(sys)(str).map(callOn(v));
-export const interpretString = sys => str => v => pipeline(...(commandString(sys)(str).map(callOn(copyV(v)))));
+export const interpretString = sys => str => v => pipeline(...(setVector(sys)(str)(v)));
  
 export const stringStates = sys => str => v => getStates(...setVector(sys)(str)(v));
 export const interpret = sys => term => v => s => command(sys)(term)(v)(copyS(s));
