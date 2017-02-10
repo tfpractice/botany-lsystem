@@ -1,7 +1,7 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, fromString, genNext, genNextDepth,
-   getCommands, getTerm, importBin, mergeTerms, mergeTermsBin, next, nextSize,
-   setComm, setCommBin, setNext, setNextBin, system, } from 'src/system';
+import { addTermBin, addTerms, callCommands, command, fromString, genNext,
+   genNextDepth, getCommands, getTerm, importBin, mergeTerms, mergeTermsBin, next,
+   nextSize, setComm,setCommBin, setNext, setNextBin, system, } from 'src/system';
 import { entry, term, } from 'src/term';
 import { forward, left, right, } from 'src/turtle';
 
@@ -10,6 +10,7 @@ const myF = term('F', myString, forward);
 const myL = term('+', '+', left);
 const myR = term('-', '-', right);
 const koch = mergeTerms(system())(myF, myL, myR);
+const myVector = { mag: 3, delta: Math.PI / 2, };
 
 describe('system', () => {
   describe('system', () => {
@@ -110,6 +111,11 @@ describe('system', () => {
   describe('mergeTerms', () => {
     it('merges multiple lsystems', () => {
       expect(mergeTerms(system())(myF, myL, myR) instanceof Map).toBeTrue();
+    });
+  });
+  describe('callCommands', () => {
+    it('converts a string to an array functions called on an object', () => {
+      expect(callCommands(koch)(myString)(myVector)).toBeArray();
     });
   });
 });

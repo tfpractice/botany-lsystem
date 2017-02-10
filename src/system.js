@@ -28,7 +28,7 @@ export const genNextDepth = (sys, d = 0) => pipeline(...funcArray(genNext(sys))(
 export const nextSize = sys => chr => segCount(next(sys)(chr));
 
 export const getCommands = sys => str => split(str).map(command(sys));
-export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(v));
+export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(x));
 
 export const importBin = (sys, [ chr, cMap, ]) => addMap(sys)(chr)(cMap);
 export const mergeTermsBin = (sys, alts) => spreadKV(alts).reduce(addBinMap, sys);

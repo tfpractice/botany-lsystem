@@ -12,5 +12,5 @@ export const setVector = sys => str => v => getCommands(sys)(str).map(callOn(v))
 export const interpret = sys => str => v => pipeline(...setVector(sys)(str)(v));
 export const getStates = sys => str => v => spreadPipe(...setVector(sys)(str)(v));
 
-export const span = sys => str => v => s => (dist(s)(interpret(sys)(str)(v)(s)));
+export const span = sys => str => v => s => dist(s)(interpret(sys)(str)(v)(s));
 export const succSpan = sys => k => v => span(sys)(next(sys)(k))(v)(state());
