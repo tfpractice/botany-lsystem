@@ -1,7 +1,7 @@
 import 'jasmine-expect';
 
 import { angleChars, command, entry, next, segChars, segCount, setCommand,
-   setNext, split, term, trimWhite, } from 'src/text';
+   setNext, split, term, trimWhite, } from 'src/term';
 const myString = 'F-F+F+FF-F-F+F';
 
 describe('text', () => {

@@ -1,7 +1,7 @@
 import { addMap, asMap, get, has, spread,xhas, } from 'fenugreek-collections';
 import { callOn, genPipeline, identity, kestrel, pipeline, } from './utils';
 import { angleChars, command as eComm, next as eNext, entry, segChars, segCount,
-split, term, trimWhite, } from './text';
+split, term, trimWhite, } from './term';
 
 const defComm = kestrel(identity);
 

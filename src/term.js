@@ -11,13 +11,13 @@ const defComm = kestrel(identity);
 const defNext = m => get(m)('next');
 
 export const entry = (next = '', fn = defComm) =>
-  new Map().set('next', next).set('command', fn,);
+[[ 'next', next, ],[ 'command', fn, ],].reduce(addBinMap,new Map);
 
 export const term = (chr, n = chr, fn = defComm) => addMap()(chr)(entry(n, fn));
 export const next = eMap => get(eMap)('next');
 export const command = eMap => get(eMap)('command');
   
-export const setNext = eMap => (s = defNext(eMap)) => addMap(eMap)('next')(s);
-export const setCommand = eMap => (fn = defComm) => addMap(eMap)('command')(fn);
+export const setNext = eMap => (s = defNext(eMap)) => entry(s, command(eMap));
+export const setCommand = eMap => (fn = defComm) => entry(next(eMap), fn);
 
 // export const copyTerm = tMap = t => term(t, next(get(tMap)(t)), command(tMap)(t));

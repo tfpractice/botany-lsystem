@@ -2,7 +2,7 @@ import 'jasmine-expect';
 import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
    getCommands, getTerm, importTermBin,mergeSystems, mergeSystemsBin,next, nextSize,nextString,
    setComm, setCommBin, setNext, setNextBin, system, } from 'src/system';
-import { entry, term, } from 'src/text';
+import { entry, term, } from 'src/term';
 import { forward, left, right, } from 'src/turtle';
 
 const myString = 'F-F+F+FF-F-F+F';
