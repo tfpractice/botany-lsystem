@@ -1,6 +1,6 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
-   getCommands, getTerm, importTermBin,mergeSystems, mergeSystemsBin,next, nextSize,nextString,
+import { addTermBin, addTerms, command, fromString, genNext, genNextDepth,
+   getCommands, getTerm, importBin, mergeTerms, mergeTermsBin, next, nextSize,
    setComm, setCommBin, setNext, setNextBin, system, } from 'src/system';
 import { entry, term, } from 'src/term';
 import { forward, left, right, } from 'src/turtle';
@@ -9,7 +9,7 @@ const myString = 'F-F+F+FF-F-F+F';
 const myF = term('F', myString, forward);
 const myL = term('+', '+', left);
 const myR = term('-', '-', right);
-const koch = mergeSystems(system())(myF, myL, myR);
+const koch = mergeTerms(system())(myF, myL, myR);
 
 describe('system', () => {
   describe('system', () => {
@@ -30,7 +30,7 @@ describe('system', () => {
       expect(getTerm(koch)('b') instanceof Map).toBeTruthy();
     });
   });
-
+  
   describe('command', () => {
     it('returns the y-value of a turtle state', () => {
       expect(command(system())('a')).toBeFunction();
@@ -73,16 +73,16 @@ describe('system', () => {
       expect(addTerms(system())('a', 'b', 'c', 'd').size).toBe(4);
     });
   });
-
+  
   describe('fromString', () => {
     it('returns a new system with entries from the split string', () => {
       expect(fromString(myString).size).toBe(3);
     });
   });
-  describe('nextString', () => {
+  describe('genNext', () => {
     it('returns a new system with entries from the split string', () => {
-      expect(nextString(fromString(myString))(myString)).toBeString();
-      expect(nextString(fromString(myString))('FFF').length).toBe(3);
+      expect(genNext(fromString(myString))(myString)).toBeString();
+      expect(genNext(fromString(myString))('FFF').length).toBe(3);
     });
   });
   describe('getCommands', () => {
@@ -90,30 +90,26 @@ describe('system', () => {
       expect(getCommands(fromString(myString))(myString)).toBeArray();
     });
   });
-  describe('genNextBin', () => {
-    it('returns a new system with entries from the split string', () => {
-      expect(genNextBin(myString, nextString(koch))).toBeString();
-    });
-  });
+  
   describe('genNextDepth', () => {
     it('returns a new system with entries from the split string', () => {
-      expect(genNextDepth(koch)(myString)(2)).toBeString();
+      expect(genNextDepth(koch, 2)(myString)).toBeString();
     });
   });
-  describe('importTermBin', () => {
+  describe('importBin', () => {
     it('takes a key and an entryMap', () => {
-      expect(importTermBin(system(), [ 'F', entry(myString, forward), ]) instanceof Map).toBeTrue();
+      expect(importBin(system(), [ 'F', entry(myString, forward), ]) instanceof Map).toBeTrue();
     });
   });
-  describe('mergeSystemsBin', () => {
+  describe('mergeTermsBin', () => {
     it('merges two systems', () => {
-      expect(mergeSystemsBin(system(),koch) instanceof Map).toBeTrue();
+      expect(mergeTermsBin(system(), koch) instanceof Map).toBeTrue();
     });
   });
   
-  describe('mergeSystems', () => {
+  describe('mergeTerms', () => {
     it('merges multiple lsystems', () => {
-      expect(mergeSystems(system())(myF, myL, myR) instanceof Map).toBeTrue();
+      expect(mergeTerms(system())(myF, myL, myR) instanceof Map).toBeTrue();
     });
   });
 });

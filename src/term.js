@@ -19,5 +19,3 @@ export const command = eMap => get(eMap)('command');
   
 export const setNext = eMap => (s = defNext(eMap)) => entry(s, command(eMap));
 export const setCommand = eMap => (fn = defComm) => entry(next(eMap), fn);
-
-// export const copyTerm = tMap = t => term(t, next(get(tMap)(t)), command(tMap)(t));

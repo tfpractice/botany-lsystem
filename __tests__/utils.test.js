@@ -51,7 +51,6 @@ describe('utils', () => {
     });
     describe('funcArray', () => {
       it('generates an array of the same function', () => {
-        console.log(funcArray(identity)(3));
         expect(funcArray(identity)(3)).toBeArray();
         expect(funcArray(identity)(3)).toContain(identity);
       });
