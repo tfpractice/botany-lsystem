@@ -32,4 +32,4 @@ export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(
 
 export const importBin = (sys, [ chr, cMap, ]) => addMap(sys)(chr)(cMap);
 export const mergeTermsBin = (sys, alts) => spreadKV(alts).reduce(addBinMap, sys);
-export const mergeTerms = sys => (...alts) => alts.reduce(mergeTermsBin, sys);
+export const mergeTerms = sys => (...alts) => alts.reduce(mergeTermsBin, asMap(sys));
