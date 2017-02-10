@@ -1,5 +1,5 @@
 import 'jasmine-expect';
-import { callBin, callOn,catCall, identity, isFunc, kestrel, lastCall,
+import { callBin, callOn, catCall, funcArray, identity, isFunc, kestrel,lastCall,
    pipeline, spreadPipe, } from 'src/utils';
 
 describe('utils', () => {
@@ -25,7 +25,7 @@ describe('utils', () => {
   });
   describe('callBin', () => {
     it('calls a function on an argument', () => {
-      expect(callBin(12,identity)).toEqual(12);
+      expect(callBin(12, identity)).toEqual(12);
     });
   });
   describe('pipeline', () => {
@@ -35,19 +35,26 @@ describe('utils', () => {
   });
   describe('lastCall', () => {
     it('calls a function on the last value of a collection', () => {
-      expect(lastCall([ 1,2,3, ])(x => x * x)).toEqual(9);
+      expect(lastCall([ 1, 2, 3, ])(x => x * x)).toEqual(9);
     });
   });
   describe('catCall', () => {
     it('calls a function called on a collections last value and appends', () => {
-      expect(catCall([ 1,2,3, ],x => x * x)).toBeArray();
-      expect(catCall([ 1,2,3, ],x => x * x)).toContain(9);
+      expect(catCall([ 1, 2, 3, ], x => x * x)).toBeArray();
+      expect(catCall([ 1, 2, 3, ], x => x * x)).toContain(9);
     });
   });
   describe('spreadPipe', () => {
     it('returns an array of pipeline return values', () => {
       expect(spreadPipe(...Array(5).fill(x => x + 2))(12)).toBeArray();
       expect(spreadPipe(...Array(5).fill(x => x + 2))(12)).toContain(22);
+    });
+    describe('funcArray', () => {
+      it('generates an array of the same function', () => {
+        console.log(funcArray(identity)(3));
+        expect(funcArray(identity)(3)).toBeArray();
+        expect(funcArray(identity)(3)).toContain(identity);
+      });
     });
   });
 });
