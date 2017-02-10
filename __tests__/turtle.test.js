@@ -40,7 +40,7 @@ describe('turtle', () => {
 
   describe('getStates', () => {
     it('returns a new state with x and y changed', () => {
-      expect(getStates(...setVector(koch)(myString)(myVector))(myState)).toBeArray();
+      expect(getStates(koch)(myString)(myVector)(myState)).toBeArray();
     });
   });
   describe('setVector', () => {
