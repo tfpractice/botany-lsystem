@@ -1,18 +1,15 @@
 import 'jasmine-expect';
 import { addTermBin, addTerms, command, fromString, genNextBin, genNextDepth,
-   getCommands, getTerm, importTermBin,mergeSystemsBin, next, nextSize,nextString,
+   getCommands, getTerm, importTermBin,mergeSystems, mergeSystemsBin,next, nextSize,nextString,
    setComm, setCommBin, setNext, setNextBin, system, } from 'src/system';
 import { entry, term, } from 'src/text';
 import { forward, left, right, } from 'src/turtle';
 
-// const myF = term('F');
 const myString = 'F-F+F+FF-F-F+F';
 const myF = term('F', myString, forward);
 const myL = term('+', '+', left);
 const myR = term('-', '-', right);
-
-const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
-.reduce(setCommBin, setNext(fromString(myString))('F')(myString));
+const koch = mergeSystems(system())(myF, myL, myR);
 
 describe('system', () => {
   describe('system', () => {
@@ -105,14 +102,18 @@ describe('system', () => {
   });
   describe('importTermBin', () => {
     it('takes a key and an entryMap', () => {
-      console.log(entry(myString, forward));
-      console.log(importTermBin(system(), [ 'F', entry(myString, forward), ]));
-      expect(importTermBin(system(new Map()), [ 'F', entry(myString, forward), ]) instanceof Map).toBeTrue(value);
+      expect(importTermBin(system(), [ 'F', entry(myString, forward), ]) instanceof Map).toBeTrue();
     });
   });
   describe('mergeSystemsBin', () => {
     it('merges two systems', () => {
-      
+      expect(mergeSystemsBin(system(),koch) instanceof Map).toBeTrue();
+    });
+  });
+  
+  describe('mergeSystems', () => {
+    it('merges multiple lsystems', () => {
+      expect(mergeSystems(system())(myF, myL, myR) instanceof Map).toBeTrue();
     });
   });
 });

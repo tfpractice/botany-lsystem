@@ -1,5 +1,5 @@
-import { addMap, asMap, get, has, xhas, } from 'fenugreek-collections';
-import { callOn, identity, kestrel, pipeline, } from './utils';
+import { addMap, asMap, get, has, spread,xhas, } from 'fenugreek-collections';
+import { callOn, genPipeline, identity, kestrel, pipeline, } from './utils';
 import { angleChars, command as eComm, next as eNext, entry, segChars, segCount,
 split, term, trimWhite, } from './text';
 
@@ -43,7 +43,6 @@ export const callCommands = sys => str => x => getCommands(sys)(str).map(callOn(
 
 export const importTermBin = (sys, [ chr, cMap, ]) => addMap(sys)(chr)(cMap);
 
-// export const
 export const mergeSystemsBin = (sys, alts) =>
 spread(asMap(alts)).reduce(importTermBin, asMap(sys));
 

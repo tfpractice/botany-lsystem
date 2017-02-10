@@ -11,3 +11,4 @@ export const catCall = (arr, fn) => append(arr)(lastCall(arr)(fn));
 
 export const pipeline = (...funcs) => x => funcs.reduce(callBin, x);
 export const spreadPipe = (...funcs) => x => funcs.reduce(catCall, [ x, ]);
+export const genPipeline = fn => (d = 1) => Array(d).fill(fn);
