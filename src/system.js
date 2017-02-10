@@ -1,11 +1,12 @@
 import { addMap, asMap, get, has, xhas, } from 'fenugreek-collections';
 import { callOn, identity, kestrel, pipeline, } from './utils';
+import { angleChars, segChars, segCount, split, trimWhite, } from './text';
 
-export const angleChars = new Set([ '+', '-', ]);
-export const trimWhite = str => str.replace(/\s/g, '');
-export const split = (str = '') => trimWhite(str).split('');
-export const segChars = str => split(str).filter(xhas(angleChars));
-export const segCount = str => segChars(str).length;
+// export const angleChars = new Set([ '+', '-', ]);
+// export const trimWhite = str => str.replace(/\s/g, '');
+// export const split = (str = '') => trimWhite(str).split('');
+// export const segChars = str => split(str).filter(xhas(angleChars));
+// export const segCount = str => segChars(str).length;
 
 export const system = sys => asMap(sys);
 export const successor = sys => term => get(get(sys)(term))('succ') || term;

@@ -1,9 +1,12 @@
 import 'jasmine-expect';
-import { addTermBin, addTerms, angleChars, command, fromString, genNextBin,
-  genNextDepth, getCommands, nextString, segChars, segCount, setComm,
-  setCommBin, setSucc,setSuccBin, split, successor, succSize, system, trimWhite, }
+import { addTermBin, addTerms, command, fromString, genNextBin,
+  genNextDepth, getCommands, nextString, setComm,
+  setCommBin, setSucc,setSuccBin, successor, succSize, system, }
   from 'src/system';
 import { forward, left, right, } from 'src/turtle';
+
+// import { segChars, segCount, split, trimWhite, } from 'src/text';
+
 const myString = 'F-F+F+FF-F-F+F';
 const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
 .reduce(setCommBin, setSucc(fromString(myString))('F')(myString));
@@ -22,16 +25,7 @@ describe('system', () => {
       expect(command(system())('a')()(12)).toEqual(12);
     });
   });
-  describe('segChars', () => {
-    it('returns all the nonRotating characters in a string', () => {
-      expect(segChars(myString)).toContain('F');
-    });
-  });
-  describe('segCount', () => {
-    it('returns all the nonRotating characters in a string', () => {
-      expect(segCount(myString)).toEqual(8);
-    });
-  });
+
   describe('command', () => {
     it('returns the y-value of a turtle state', () => {
       expect(command(system())('a')).toBeFunction();
@@ -74,15 +68,7 @@ describe('system', () => {
       expect(addTerms(system())('a', 'b', 'c', 'd').size).toBe(4);
     });
   });
-  describe('trimWhite', () => {
-    it('returns a string without whitespace', () => {
-      expect(trimWhite(myString)).not.toContain(' ');
-    });
-  }); describe('split', () => {
-    it('returns a split string', () => {
-      expect(split(myString)).toContain('F');
-    });
-  });
+
   describe('fromString', () => {
     it('returns a new system with entries from the split string', () => {
       expect(fromString(myString).size).toBe(3);
