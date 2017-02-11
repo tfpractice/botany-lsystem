@@ -1,5 +1,6 @@
-import { mergeTerms, } from './vocab';
-import { term, } from './term';
+import { mergeTerms, next, } from './vocab';
+import { system, } from './system';
+import { segCount,term, } from './term';
 import { forward, left, right, } from './turtle';
 
 export const terms = [
@@ -8,4 +9,9 @@ export const terms = [
   term('-', '-', right),
   term('+', '+', left),
 ];
+
+// export const isFilling = sys => t => v=>segCount(next(sys)(t))==;
 export const fass = () => mergeTerms(...terms);
+
+// export const
+// export const addTerms
