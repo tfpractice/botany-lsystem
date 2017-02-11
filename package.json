@@ -1,6 +1,6 @@
 {
   "name": "botany-lsystem",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Lindenmayer systems from the algortihmic beauty of plants",
   "main": "dist/bundle.cjs.js",
   "repository": "git@github.com:tfpractice/botany-lsystem.git",
