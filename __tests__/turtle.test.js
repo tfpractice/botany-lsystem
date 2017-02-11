@@ -1,6 +1,6 @@
 import 'jasmine-expect';
 import { forward, getStates, interpret, left, right, setVector, span, succSpan, } from 'src/turtle';
-import { command, fromString, setCommBin, setNext, } from 'src/system';
+import { command, fromString, setCommBin, setNext, } from 'src/vocab';
 import { getDir, state, } from 'src/state';
 import { vector, } from 'src/vector';
 

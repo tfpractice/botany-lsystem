@@ -1,5 +1,5 @@
 import { callOn, pipeline, spreadPipe, } from './utils';
-import { getCommands, next, } from './system';
+import { getCommands, next, } from './vocab';
 import { copyV, getDelta, getMag, } from './vector';
 import { dist, rotate, state, translate, } from './state';
 

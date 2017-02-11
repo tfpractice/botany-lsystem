@@ -1,4 +1,4 @@
-import { mergeTerms, } from './system';
+import { mergeTerms, } from './vocab';
 import { term, } from './term';
 import { forward, left, right, } from './turtle';
 
