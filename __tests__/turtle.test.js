@@ -3,14 +3,18 @@ import { forward, getStates, interpret, left, right, setVector, span, succSpan, 
 import { command, fromString, setCommBin, setNext, } from 'src/vocab';
 import { getDir, state, } from 'src/state';
 import { vector, } from 'src/vector';
+import { system, } from 'src/system';
+import { term, } from 'src/term';
 
 const myState = state(1, 2, Math.PI / 2);
 const myVector = vector(3, Math.PI / 2);
 const myString = 'F-F+F+FF-F-F+F';
 const myComms = [ forward(myVector), left(myVector), left(myVector), left(myVector), forward(myVector), ];
+const myF = term('F', myString, forward);
 
-const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
-.reduce(setCommBin, setNext(fromString(myString))('F')(myString));
+// const koch = [[ 'F', forward, ], [ '-', left, ], [ '+', right, ],]
+// .reduce(setCommBin, setNext(fromString(myString))('F')(myString));
+const koch = system(myF);
 
 describe('turtle', () => {
   describe('right', () => {
@@ -20,6 +24,7 @@ describe('turtle', () => {
   });
   describe('left', () => {
     it('returns a new state with direction changed', () => {
+      console.log(getDir(left(myVector)(myState)));
       expect(getDir(left(myVector)(myState))).toEqual(Math.PI);
     });
   });
